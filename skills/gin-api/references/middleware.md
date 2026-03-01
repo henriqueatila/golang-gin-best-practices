@@ -186,73 +186,7 @@ Sample output (JSON handler):
 
 ## Rate Limiting
 
-Use `golang.org/x/time/rate` (token bucket) per client IP.
-
-```go
-// pkg/middleware/rate_limiter.go
-package middleware
-
-import (
-    "net/http"
-    "sync"
-    "time"
-
-    "github.com/gin-gonic/gin"
-    "golang.org/x/time/rate"
-)
-
-type ipLimiter struct {
-    limiter  *rate.Limiter
-    lastSeen time.Time
-}
-
-// RateLimiter returns middleware that limits requests per IP.
-// r: requests per second allowed; burst: maximum burst size.
-func RateLimiter(r rate.Limit, burst int) gin.HandlerFunc {
-    var (
-        mu       sync.Mutex
-        limiters = make(map[string]*ipLimiter)
-    )
-
-    // Cleanup stale entries every minute
-    go func() {
-        for range time.Tick(time.Minute) {
-            mu.Lock()
-            for ip, l := range limiters {
-                if time.Since(l.lastSeen) > 3*time.Minute {
-                    delete(limiters, ip)
-                }
-            }
-            mu.Unlock()
-        }
-    }()
-
-    getLimiter := func(ip string) *rate.Limiter {
-        mu.Lock()
-        defer mu.Unlock()
-        l, ok := limiters[ip]
-        if !ok {
-            l = &ipLimiter{limiter: rate.NewLimiter(r, burst)}
-            limiters[ip] = l
-        }
-        l.lastSeen = time.Now()
-        return l.limiter
-    }
-
-    return func(c *gin.Context) {
-        limiter := getLimiter(c.ClientIP())
-        if !limiter.Allow() {
-            c.AbortWithStatusJSON(http.StatusTooManyRequests, gin.H{
-                "error": "rate limit exceeded",
-            })
-            return
-        }
-        c.Next()
-    }
-}
-```
-
-Apply globally or to specific groups:
+Basic in-memory rate limiting uses `golang.org/x/time/rate` (token bucket) per client IP:
 
 ```go
 // Global: 10 req/s, burst of 20
@@ -260,8 +194,10 @@ r.Use(middleware.RateLimiter(10, 20))
 
 // Stricter limit on auth endpoints
 auth := r.Group("/api/v1/auth")
-auth.Use(middleware.RateLimiter(2, 5)) // 2 req/s, burst of 5
+auth.Use(middleware.RateLimiter(2, 5))
 ```
+
+For the full implementation and production patterns (Redis distributed limiting, sliding window, per-user/API-key quotas, tiered limits, response headers), see **[rate-limiting.md](rate-limiting.md)**.
 
 ---
 

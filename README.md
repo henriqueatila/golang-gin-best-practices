@@ -103,7 +103,9 @@ gin-best-practices/
 │   │   └── references/
 │   │       ├── routing.md           # Route groups, versioning, pagination, file uploads
 │   │       ├── middleware.md        # CORS, rate limiting, request ID, timeout, recovery
-│   │       └── error-handling.md    # AppError system, validation errors, panic recovery
+│   │       ├── error-handling.md    # AppError system, validation errors, panic recovery
+│   │       ├── websocket.md         # gorilla/websocket, hub pattern, auth, ping/pong
+│   │       └── rate-limiting.md     # Token bucket, sliding window, Redis, tiered limits
 │   │
 │   ├── gin-auth/
 │   │   ├── SKILL.md                 # JWT middleware, login handler, RBAC, token lifecycle
@@ -138,7 +140,8 @@ gin-best-practices/
 │   │   └── references/
 │   │       ├── dockerfile.md        # Distroless, build args, layer caching, image size
 │   │       ├── docker-compose.md    # Air hot reload, pgadmin, networking, integration tests
-│   │       └── kubernetes.md        # Deployment, Service, ConfigMap, HPA, Ingress, Helm
+│   │       ├── kubernetes.md        # Deployment, Service, ConfigMap, HPA, Ingress, Helm
+│   │       └── observability.md     # OpenTelemetry tracing, metrics, slog correlation
 │   │
 │   ├── gin-api.zip                  # Packaged skill (SKILL.md + references/)
 │   ├── gin-auth.zip

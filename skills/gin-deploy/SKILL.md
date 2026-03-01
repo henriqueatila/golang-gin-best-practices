@@ -312,6 +312,7 @@ Load these when you need deeper detail:
 - **[references/dockerfile.md](references/dockerfile.md)** — Multi-stage build explained, distroless vs Alpine vs scratch, build args and secrets, layer caching, non-root user, image size optimization, complete production Dockerfile
 - **[references/docker-compose.md](references/docker-compose.md)** — Air hot reload setup, pgadmin, service health checks, volume mounts, networking, integration test compose, production-like compose
 - **[references/kubernetes.md](references/kubernetes.md)** — Deployment manifest, Service, ConfigMap, Secret, liveness/readiness probes, HPA, Ingress, PVC, Helm chart structure, GitHub Actions CI/CD workflow
+- **[references/observability.md](references/observability.md)** — OpenTelemetry tracing and metrics: SDK setup, otelgin middleware, manual spans, RED metrics, log-trace correlation with slog, sampling, Jaeger docker-compose
 
 ## Cross-Skill References
 
