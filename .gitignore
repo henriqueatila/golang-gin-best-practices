@@ -84,3 +84,39 @@ external/
 
 # Git worktrees (local development only)
 worktrees/
+
+# AI agent / IDE config directories
+.agent/
+.agents/
+.codebuddy/
+.commandcode/
+.continue/
+.crush/
+.factory/
+.goose/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.opencode/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.windsurf/
+.zencoder/
+# AGENTS.md — tracked for this repo (agent guidance)
+
+# Local skill lock files and release manifest
+skills-lock.json
+release-manifest.json
+home/
+
+# Repomix
+.repomixignore

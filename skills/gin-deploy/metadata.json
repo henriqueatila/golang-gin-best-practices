@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "organization": "henriqueatila",
+  "date": "March 2026",
+  "abstract": "Containerization and deployment for Go Gin APIs — multi-stage Docker builds, docker-compose dev environments, Kubernetes manifests, health checks, and CI/CD pipelines.",
+  "references": [
+    "https://gin-gonic.com/docs/",
+    "https://docs.docker.com/",
+    "https://kubernetes.io/docs/",
+    "https://context7.com/websites/gin-gonic_en"
+  ]
+}
