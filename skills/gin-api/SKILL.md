@@ -247,6 +247,42 @@ if err := c.ShouldBindURI(&params); err != nil { ... }
 
 **Critical:** Always use `ShouldBind*` — `Bind*` auto-aborts with 400 and prevents custom error responses.
 
+## Input Sanitization
+
+Struct tags validate format and constraints. Sanitize string fields **after** binding to neutralize injection payloads before they reach services or storage.
+
+```go
+import (
+    "html"
+    "path/filepath"
+    "strings"
+)
+
+func (h *UserHandler) Create(c *gin.Context) {
+    var req domain.CreateUserRequest
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    // Sanitize after bind: trim whitespace, escape HTML entities
+    req.Name = strings.TrimSpace(req.Name)
+    req.Name = html.EscapeString(req.Name)
+    req.Email = strings.TrimSpace(req.Email)
+    req.Email = strings.ToLower(req.Email)
+
+    user, err := h.svc.Create(c.Request.Context(), req)
+    // ...
+}
+```
+
+For file uploads, always strip directory components from client-supplied filenames:
+
+```go
+safeName := filepath.Base(file.Filename)
+dst := filepath.Join("uploads", safeName)
+```
+
 ## Centralized Error Handling
 
 ```go
