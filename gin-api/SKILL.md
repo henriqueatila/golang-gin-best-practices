@@ -278,6 +278,34 @@ func handleServiceError(c *gin.Context, err error) {
 }
 ```
 
+## Goroutine Safety
+
+**Always call `c.Copy()` before passing `*gin.Context` to a goroutine.** The original context is reused by the pool after the request ends.
+
+```go
+func (h *UserHandler) CreateWithNotification(c *gin.Context) {
+    var req domain.CreateUserRequest
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    user, err := h.svc.Create(c.Request.Context(), req)
+    if err != nil {
+        handleServiceError(c, err)
+        return
+    }
+
+    // c.Copy() — safe to use in goroutine, original c is NOT
+    cCopy := c.Copy()
+    go func() {
+        h.notifier.SendWelcome(cCopy.Request.Context(), user)
+    }()
+
+    c.JSON(http.StatusCreated, user)
+}
+```
+
 ## Reference Files
 
 Load these when you need deeper detail:
