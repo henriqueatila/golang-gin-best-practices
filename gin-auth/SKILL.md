@@ -262,7 +262,7 @@ Wire the engine with `gin.New()` + explicit middleware, then apply `Auth` to rou
 // cmd/api/main.go — engine setup (always gin.New(), never gin.Default() in production)
 r := gin.New()
 r.Use(middleware.Logger(logger))
-r.Use(gin.Recovery())
+r.Use(middleware.Recovery(logger))
 registerRoutes(r, authHandler, userHandler, tokenCfg, logger)
 ```
 
@@ -323,12 +323,14 @@ func (h *UserHandler) GetMe(c *gin.Context) {
 
     user, err := h.svc.GetByID(c.Request.Context(), userID)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 
-    _ = claims // use claims.Role, claims.Email as needed
-    c.JSON(http.StatusOK, user)
+    c.JSON(http.StatusOK, gin.H{
+        "user": user,
+        "role": claims.Role,
+    })
 }
 ```
 

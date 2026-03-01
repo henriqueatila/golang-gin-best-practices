@@ -62,7 +62,7 @@ func main() {
     // Production: gin.New() + explicit middleware (NOT gin.Default())
     r := gin.New()
     r.Use(middleware.Logger(logger))
-    r.Use(gin.Recovery())
+    r.Use(middleware.Recovery(logger))
 
     // Dependency injection
     userRepo := repository.NewUserRepository(db)
@@ -108,12 +108,13 @@ package domain
 import "time"
 
 type User struct {
-    ID        string    `json:"id"`
-    Name      string    `json:"name"`
-    Email     string    `json:"email"`
-    Role      string    `json:"role"`
-    CreatedAt time.Time `json:"created_at"`
-    UpdatedAt time.Time `json:"updated_at"`
+    ID           string    `json:"id"`
+    Name         string    `json:"name"`
+    Email        string    `json:"email"`
+    PasswordHash string    `json:"-"` // never exposed via API
+    Role         string    `json:"role"`
+    CreatedAt    time.Time `json:"created_at"`
+    UpdatedAt    time.Time `json:"updated_at"`
 }
 
 type CreateUserRequest struct {
@@ -159,7 +160,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 
     user, err := h.svc.Create(c.Request.Context(), req)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 
@@ -178,7 +179,7 @@ func (h *UserHandler) GetByID(c *gin.Context) {
 
     user, err := h.svc.GetByID(c.Request.Context(), params.ID)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 
@@ -189,7 +190,7 @@ func (h *UserHandler) GetByID(c *gin.Context) {
 ## Route Registration
 
 ```go
-func registerRoutes(r *gin.Engine, userHandler *handler.UserHandler) {
+func registerRoutes(r *gin.Engine, userHandler *handler.UserHandler, authHandler *handler.AuthHandler, tokenCfg auth.TokenConfig, logger *slog.Logger) {
     // Health check — no auth required
     r.GET("/health", func(c *gin.Context) {
         c.JSON(http.StatusOK, gin.H{"status": "ok"})
@@ -206,7 +207,7 @@ func registerRoutes(r *gin.Engine, userHandler *handler.UserHandler) {
 
     // Protected routes — for JWT middleware, see gin-auth skill
     protected := api.Group("")
-    protected.Use(middleware.Auth())
+    protected.Use(middleware.Auth(tokenCfg, logger)) // see gin-auth skill
     {
         protected.GET("/users/:id", userHandler.GetByID)
         protected.GET("/users", userHandler.List)
@@ -267,13 +268,18 @@ var (
     ErrValidation     = &AppError{Code: 422, Message: "validation failed"}
 )
 
-// handleServiceError maps domain errors to HTTP responses
-func handleServiceError(c *gin.Context, err error) {
+// handleServiceError maps domain errors to HTTP responses.
+// Logger is used to record 5xx errors — the actual error is never sent to clients.
+func handleServiceError(c *gin.Context, err error, logger *slog.Logger) {
     var appErr *domain.AppError
     if errors.As(err, &appErr) {
+        if appErr.Code >= 500 {
+            logger.ErrorContext(c.Request.Context(), "service error", "error", err, "path", c.FullPath())
+        }
         c.JSON(appErr.Code, gin.H{"error": appErr.Message})
         return
     }
+    logger.ErrorContext(c.Request.Context(), "unhandled error", "error", err, "path", c.FullPath())
     c.JSON(http.StatusInternalServerError, gin.H{"error": "internal server error"})
 }
 ```
@@ -292,7 +298,7 @@ func (h *UserHandler) CreateWithNotification(c *gin.Context) {
 
     user, err := h.svc.Create(c.Request.Context(), req)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 

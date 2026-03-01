@@ -38,7 +38,7 @@ func registerRoutes(r *gin.Engine, h *handler.Handlers) {
 
             // Protected: JWT required
             users := v1.Group("/users")
-            users.Use(middleware.Auth())
+            users.Use(middleware.Auth(tokenCfg, logger))
             {
                 users.GET("", h.User.List)
                 users.POST("", h.User.Create)
@@ -49,7 +49,7 @@ func registerRoutes(r *gin.Engine, h *handler.Handlers) {
 
             // Admin: JWT + role check
             admin := v1.Group("/admin")
-            admin.Use(middleware.Auth(), middleware.RequireRole("admin"))
+            admin.Use(middleware.Auth(tokenCfg, logger), middleware.RequireRole("admin"))
             {
                 admin.GET("/users", h.Admin.ListAllUsers)
                 admin.DELETE("/users/:id", h.Admin.DeleteUser)
@@ -59,7 +59,7 @@ func registerRoutes(r *gin.Engine, h *handler.Handlers) {
 }
 ```
 
-**Why group nesting:** Each level applies its middleware to all routes below. This avoids repeating `middleware.Auth()` on every route and makes the security model explicit in the structure.
+**Why group nesting:** Each level applies its middleware to all routes below. This avoids repeating `middleware.Auth(tokenCfg, logger)` on every route and makes the security model explicit in the structure.
 
 ---
 
@@ -397,7 +397,7 @@ func (h *UploadHandler) UploadAvatar(c *gin.Context) {
 
     dst := fmt.Sprintf("uploads/avatars/%s%s", p.UserID, ext)
     if err := c.SaveUploadedFile(file, dst); err != nil {
-        handleServiceError(c, fmt.Errorf("save file: %w", domain.ErrInternal.New(err)), h.logger)
+        handleServiceError(c, domain.ErrInternal.New(fmt.Errorf("save file: %w", err)), h.logger)
         return
     }
 
@@ -438,7 +438,7 @@ Route registration:
 r.MaxMultipartMemory = 8 << 20
 
 protected := r.Group("/api/v1")
-protected.Use(middleware.Auth())
+protected.Use(middleware.Auth(tokenCfg, logger))
 {
     protected.POST("/users/:id/avatar",    uploadHandler.UploadAvatar)
     protected.POST("/users/:id/documents", uploadHandler.UploadDocuments)

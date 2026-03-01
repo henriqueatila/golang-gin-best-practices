@@ -316,7 +316,7 @@ func (h *PostHandler) GetByID(c *gin.Context) {
 
     post, err := h.svc.GetByID(c.Request.Context(), tenantID, params.ID)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 
@@ -364,7 +364,7 @@ func (h *UserHandler) Update(c *gin.Context) {
 
     user, err := h.svc.Update(c.Request.Context(), params.ID, req)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 
@@ -415,7 +415,7 @@ func (h *AdminHandler) Impersonate(c *gin.Context) {
 
     target, err := h.userRepo.GetByID(c.Request.Context(), req.TargetUserID)
     if err != nil {
-        handleServiceError(c, err)
+        handleServiceError(c, err, h.logger)
         return
     }
 

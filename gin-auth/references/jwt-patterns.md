@@ -295,6 +295,7 @@ package auth
 import (
     "crypto/rsa"
     "fmt"
+    "time"
 
     "github.com/golang-jwt/jwt/v5"
 )
@@ -379,16 +380,21 @@ func main() {
     blacklist := auth.NewBlacklist(rdb)
 
     // DB and repository wiring (see gin-database skill)
-    db, _ := repository.NewGORMDB(repository.Config{DSN: os.Getenv("DATABASE_URL")}, logger)
+    db, err := repository.NewGORMDB(repository.Config{DSN: os.Getenv("DATABASE_URL")}, logger)
+    if err != nil {
+        logger.Error("database connection failed", "error", err)
+        os.Exit(1)
+    }
     userRepo := repository.NewUserRepository(db)
 
     // Handlers
     authHandler := handler.NewAuthHandler(userRepo, tokenCfg, blacklist, logger)
-    userHandler := handler.NewUserHandler(handler.NewUserService(userRepo, logger), logger)
+    userSvc := service.NewUserService(userRepo, logger)
+    userHandler := handler.NewUserHandler(userSvc, logger)
 
     r := gin.New()
     r.Use(middleware.Logger(logger))
-    r.Use(gin.Recovery())
+    r.Use(middleware.Recovery(logger))
 
     api := r.Group("/api/v1")
 
@@ -399,7 +405,7 @@ func main() {
 
     // Protected — Auth middleware validates JWT and injects claims
     protected := api.Group("")
-    protected.Use(middleware.Auth(tokenCfg, blacklist, logger))
+    protected.Use(middleware.Auth(tokenCfg, logger))
     {
         protected.POST("/auth/logout", authHandler.Logout)
         protected.GET("/users/me", userHandler.GetMe)
@@ -414,9 +420,25 @@ func main() {
         }
     }
 
-    if err := r.Run(os.Getenv("PORT")); err != nil {
-        logger.Error("server failed", "error", err)
-        os.Exit(1)
+    srv := &http.Server{
+        Addr:         os.Getenv("PORT"),
+        Handler:      r,
+        ReadTimeout:  10 * time.Second,
+        WriteTimeout: 10 * time.Second,
+    }
+    go func() {
+        if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+            logger.Error("server failed", "error", err)
+            os.Exit(1)
+        }
+    }()
+    quit := make(chan os.Signal, 1)
+    signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+    <-quit
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+    if err := srv.Shutdown(ctx); err != nil {
+        logger.Error("graceful shutdown failed", "error", err)
     }
 }
 ```

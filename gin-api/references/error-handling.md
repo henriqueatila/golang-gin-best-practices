@@ -90,7 +90,10 @@ func (s *userService) GetByID(ctx context.Context, id string) (*domain.User, err
 }
 
 func (s *userService) Create(ctx context.Context, req domain.CreateUserRequest) (*domain.User, error) {
-    existing, _ := s.repo.GetByEmail(ctx, req.Email)
+    existing, err := s.repo.GetByEmail(ctx, req.Email)
+    if err != nil && !errors.Is(err, sql.ErrNoRows) {
+        return nil, domain.ErrInternal.New(err)
+    }
     if existing != nil {
         return nil, domain.ErrConflict.New(fmt.Errorf("email %s already registered", req.Email))
     }

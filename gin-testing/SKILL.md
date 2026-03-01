@@ -127,12 +127,16 @@ Test handlers by wiring a real router with a **mock service**, then using `httpt
 package handler_test
 
 import (
+    "context"
+    "log/slog"
     "net/http"
     "testing"
     "time"
 
+    "github.com/gin-gonic/gin"
     "myapp/internal/domain"
     "myapp/internal/handler"
+    "myapp/internal/service"
     "myapp/internal/testutil"
 )
 
@@ -297,6 +301,7 @@ package service_test
 import (
     "context"
     "errors"
+    "log/slog"
     "testing"
 
     "myapp/internal/domain"

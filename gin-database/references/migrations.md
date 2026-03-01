@@ -324,6 +324,7 @@ package main
 
 import (
     "context"
+    "fmt"
     "log/slog"
     "os"
 

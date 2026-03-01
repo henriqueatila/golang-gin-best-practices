@@ -399,7 +399,7 @@ api := r.Group("/api/v1")
 api.Use(middleware.Timeout(30 * time.Second))
 ```
 
-**Critical:** This middleware launches `c.Next()` in a goroutine. If your handlers write to `c` after the timeout fires and `AbortWithStatusJSON` has run, Gin will ignore the duplicate write (first write wins). This is safe but handlers should always check `ctx.Done()` in long loops.
+**Critical — goroutine safety:** This middleware launches `c.Next()` in a goroutine. Normally you must call `c.Copy()` before passing `*gin.Context` to a goroutine (see gin-api SKILL.md). This is an **exception**: the timeout middleware controls the entire request lifecycle — the goroutine runs `c.Next()` which completes the handler chain, and Gin's first-write-wins ensures safety if the timeout fires first. Handlers should check `ctx.Done()` in long loops.
 
 ---
 

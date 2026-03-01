@@ -254,8 +254,8 @@ func buildApp(db *gorm.DB) *appUnderTest {
     userHandler := handler.NewUserHandler(userSvc, logger)
     authHandler := handler.NewAuthHandler(userRepo, tokenCfg, logger)
 
-    r := gin.New() // gin.New() — no Logger/Recovery in test output
-    r.Use(gin.Recovery())
+    r := gin.New() // gin.New() — explicit middleware, no defaults
+    r.Use(middleware.Recovery(logger))
 
     api := r.Group("/api/v1")
 
