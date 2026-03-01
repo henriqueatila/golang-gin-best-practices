@@ -1,6 +1,10 @@
 ---
 name: gin-api
 description: "Build REST APIs with Go Gin framework. Covers routing, handler patterns, request binding/validation, middleware chains, error handling, and project structure. Use when creating Go web servers, REST endpoints, HTTP handlers, or working with the Gin framework. Also activate when the user mentions Gin routes, middleware, JSON responses, request parsing, or API structure in Go."
+license: MIT
+metadata:
+  author: henriqueatila
+  version: "1.0.0"
 ---
 
 # gin-api — Core REST API Development

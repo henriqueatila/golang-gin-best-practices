@@ -1,6 +1,10 @@
 ---
 name: gin-auth
 description: "Implement authentication and authorization in Go Gin APIs. Covers JWT middleware, login/register handlers, role-based access control (RBAC), token refresh, and protected routes. Use when adding auth, login, signup, JWT tokens, user sessions, permissions, or role checks to a Gin application."
+license: MIT
+metadata:
+  author: henriqueatila
+  version: "1.0.0"
 ---
 
 # gin-auth — Authentication & Authorization

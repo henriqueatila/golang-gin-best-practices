@@ -1,6 +1,10 @@
 ---
 name: gin-testing
 description: "Test Go Gin REST APIs with unit, integration, and end-to-end tests. Covers httptest patterns, table-driven tests, mocking repositories, testcontainers for real databases, and CI/CD integration. Use when writing tests for Gin handlers, services, middleware, or setting up test infrastructure for a Go API."
+license: MIT
+metadata:
+  author: henriqueatila
+  version: "1.0.0"
 ---
 
 # gin-testing — Testing REST APIs

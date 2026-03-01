@@ -1,6 +1,10 @@
 ---
 name: gin-deploy
 description: "Deploy Go Gin APIs with Docker, docker-compose, and Kubernetes. Covers multi-stage Dockerfiles, health checks, graceful shutdown, CI/CD pipelines, and production configuration. Use when containerizing a Go API, setting up local dev with Docker, deploying to Kubernetes, or configuring CI/CD for a Gin application. Also activate when the user mentions Docker build, docker-compose, K8s deployment, health probes, environment variables, or 12-factor app config for a Go/Gin project."
+license: MIT
+metadata:
+  author: henriqueatila
+  version: "1.0.0"
 ---
 
 # gin-deploy — Containerization & Deployment
