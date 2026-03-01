@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "organization": "henriqueatila",
+  "date": "March 2026",
+  "abstract": "JWT authentication and role-based access control for Go Gin APIs — login handlers, auth middleware, token refresh, RBAC, and protected route patterns.",
+  "references": [
+    "https://gin-gonic.com/docs/",
+    "https://pkg.go.dev/github.com/golang-jwt/jwt/v5"
+  ]
+}

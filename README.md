@@ -1,4 +1,4 @@
-# gin-skills
+# gin-best-practices
 
 Agent Skills for building production-grade REST APIs with Go and the Gin framework.
 
@@ -20,7 +20,7 @@ Agent Skills for building production-grade REST APIs with Go and the Gin framewo
 
 ## Quick Start
 
-### Install all skills at once
+### Install all skills
 
 ```bash
 npx skills add henriqueatila/gin-best-practices --skill gin-api
@@ -47,6 +47,16 @@ npx skills add henriqueatila/gin-best-practices --skill gin-testing
 
 # Add deployment configuration
 npx skills add henriqueatila/gin-best-practices --skill gin-deploy
+```
+
+### Manual installation
+
+Download the zip package for any skill from the `skills/` directory and extract it into your project's `.claude/skills/` folder:
+
+```bash
+# Example: download and extract gin-api
+curl -L https://github.com/henriqueatila/gin-best-practices/raw/main/skills/gin-api.zip -o gin-api.zip
+unzip gin-api.zip -d .claude/skills/gin-api/
 ```
 
 ---
@@ -79,44 +89,68 @@ You can start with `gin-api` and add skills incrementally as your project grows.
 ## Directory Structure
 
 ```
-gin-skills/
-├── LICENSE
+gin-best-practices/
 ├── README.md
-├── GIN-API-REFERENCE.md          # Authoritative Gin API method reference
+├── CLAUDE.md                        # Agent guidance for this repo
+├── AGENTS.md                        # Multi-agent guidance
+├── LICENSE
 │
-├── gin-api/
-│   ├── SKILL.md                  # Server setup, routing, handlers, binding, errors
-│   └── references/
-│       ├── routing.md            # Route groups, versioning, pagination, file uploads
-│       ├── middleware.md         # CORS, rate limiting, request ID, timeout, recovery
-│       └── error-handling.md    # AppError system, validation errors, panic recovery
+├── skills/
+│   ├── gin-api/
+│   │   ├── SKILL.md                 # Server setup, routing, handlers, binding, errors
+│   │   ├── metadata.json
+│   │   ├── README.md
+│   │   └── references/
+│   │       ├── routing.md           # Route groups, versioning, pagination, file uploads
+│   │       ├── middleware.md        # CORS, rate limiting, request ID, timeout, recovery
+│   │       └── error-handling.md    # AppError system, validation errors, panic recovery
+│   │
+│   ├── gin-auth/
+│   │   ├── SKILL.md                 # JWT middleware, login handler, RBAC, token lifecycle
+│   │   ├── metadata.json
+│   │   ├── README.md
+│   │   └── references/
+│   │       ├── jwt-patterns.md      # Token refresh, blacklisting (Redis), RS256 vs HS256
+│   │       └── rbac.md              # RequireRole, permissions, multi-tenant authorization
+│   │
+│   ├── gin-database/
+│   │   ├── SKILL.md                 # Repository pattern, GORM/sqlx, connection pooling, DI
+│   │   ├── metadata.json
+│   │   ├── README.md
+│   │   └── references/
+│   │       ├── gorm-patterns.md     # Models, CRUD, soft deletes, transactions, hooks
+│   │       ├── sqlx-patterns.md     # Struct scanning, NamedExec, IN clauses, transactions
+│   │       └── migrations.md        # golang-migrate CLI, zero-downtime, seeding, rollback
+│   │
+│   ├── gin-testing/
+│   │   ├── SKILL.md                 # httptest, table-driven tests, mock repositories
+│   │   ├── metadata.json
+│   │   ├── README.md
+│   │   └── references/
+│   │       ├── unit-tests.md        # Handler tests, middleware isolation, mock generation
+│   │       ├── integration-tests.md # testcontainers, TestMain, DB lifecycle, cleanup
+│   │       └── e2e.md               # Full flows, docker-compose tests, GitHub Actions CI
+│   │
+│   ├── gin-deploy/
+│   │   ├── SKILL.md                 # Multi-stage Dockerfile, docker-compose, health checks
+│   │   ├── metadata.json
+│   │   ├── README.md
+│   │   └── references/
+│   │       ├── dockerfile.md        # Distroless, build args, layer caching, image size
+│   │       ├── docker-compose.md    # Air hot reload, pgadmin, networking, integration tests
+│   │       └── kubernetes.md        # Deployment, Service, ConfigMap, HPA, Ingress, Helm
+│   │
+│   ├── gin-api.zip                  # Packaged skill (SKILL.md + references/)
+│   ├── gin-auth.zip
+│   ├── gin-database.zip
+│   ├── gin-deploy.zip
+│   └── gin-testing.zip
 │
-├── gin-auth/
-│   ├── SKILL.md                  # JWT middleware, login handler, RBAC, token lifecycle
-│   └── references/
-│       ├── jwt-patterns.md       # Token refresh, blacklisting (Redis), RS256 vs HS256
-│       └── rbac.md               # RequireRole, permissions, multi-tenant authorization
-│
-├── gin-database/
-│   ├── SKILL.md                  # Repository pattern, GORM/sqlx, connection pooling, DI
-│   └── references/
-│       ├── gorm-patterns.md      # Models, CRUD, soft deletes, transactions, hooks
-│       ├── sqlx-patterns.md      # Struct scanning, NamedExec, IN clauses, transactions
-│       └── migrations.md         # golang-migrate CLI, zero-downtime, seeding, rollback
-│
-├── gin-testing/
-│   ├── SKILL.md                  # httptest, table-driven tests, mock repositories
-│   └── references/
-│       ├── unit-tests.md         # Handler tests, middleware isolation, mock generation
-│       ├── integration-tests.md  # testcontainers, TestMain, DB lifecycle, cleanup
-│       └── e2e.md                # Full flows, docker-compose tests, GitHub Actions CI
-│
-└── gin-deploy/
-    ├── SKILL.md                  # Multi-stage Dockerfile, docker-compose, health checks
-    └── references/
-        ├── dockerfile.md         # Distroless, build args, layer caching, image size
-        ├── docker-compose.md     # Air hot reload, pgadmin, networking, integration tests
-        └── kubernetes.md         # Deployment, Service, ConfigMap, HPA, Ingress, Helm
+└── docs/
+    ├── CLAUDE.md                    # Build system prompt (used during skill creation)
+    ├── SPECIFICATION.md             # Full specification for all skills
+    ├── GUIDE.md                     # Writing guide for skill authors
+    └── GIN-API-REFERENCE.md         # Verified Gin API surface
 ```
 
 ---
@@ -144,7 +178,7 @@ gin-skills/
 3. SKILL.md files must stay under 500 lines — move detail to reference files
 4. Reference files over 300 lines must include a table of contents
 5. Use `gin.New()`, `log/slog`, `ShouldBind*`, and `context.Context` consistently
-6. Run the quality checklist in `SPECIFICATION.md` before submitting a PR
+6. Run the quality checklist in `docs/SPECIFICATION.md` before submitting a PR
 
 ---
 

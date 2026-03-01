@@ -111,10 +111,9 @@ worktrees/
 .trae/
 .windsurf/
 .zencoder/
-AGENTS.md
+# AGENTS.md — tracked for this repo (agent guidance)
 
-# Local skill symlinks and lock files
-skills/
+# Local skill lock files and release manifest
 skills-lock.json
 release-manifest.json
 home/
