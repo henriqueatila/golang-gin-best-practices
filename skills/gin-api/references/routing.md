@@ -395,7 +395,9 @@ func (h *UploadHandler) UploadAvatar(c *gin.Context) {
         return
     }
 
-    dst := fmt.Sprintf("uploads/avatars/%s%s", p.UserID, ext)
+    // Sanitize path: strip directory components to prevent path traversal
+    safeID := filepath.Base(p.UserID)
+    dst := filepath.Join("uploads/avatars", safeID+ext)
     if err := c.SaveUploadedFile(file, dst); err != nil {
         handleServiceError(c, domain.ErrInternal.New(fmt.Errorf("save file: %w", err)), h.logger)
         return
@@ -420,7 +422,13 @@ func (h *UploadHandler) UploadDocuments(c *gin.Context) {
 
     saved := make([]string, 0, len(files))
     for _, file := range files {
-        dst := fmt.Sprintf("uploads/docs/%s", file.Filename)
+        // Sanitize filename: strip directory components to prevent path traversal
+        safeName := filepath.Base(file.Filename)
+        if safeName == "." || safeName == "/" {
+            c.JSON(http.StatusBadRequest, gin.H{"error": "invalid filename"})
+            return
+        }
+        dst := filepath.Join("uploads/docs", safeName)
         if err := c.SaveUploadedFile(file, dst); err != nil {
             c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save file"})
             return
