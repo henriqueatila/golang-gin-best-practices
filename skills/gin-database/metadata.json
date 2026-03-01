@@ -6,6 +6,7 @@
   "references": [
     "https://gin-gonic.com/docs/",
     "https://gorm.io/docs/",
-    "https://pkg.go.dev/github.com/jmoiron/sqlx"
+    "https://pkg.go.dev/github.com/jmoiron/sqlx",
+    "https://context7.com/websites/gin-gonic_en"
   ]
 }

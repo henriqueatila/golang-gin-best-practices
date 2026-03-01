@@ -6,6 +6,7 @@
   "references": [
     "https://gin-gonic.com/docs/",
     "https://pkg.go.dev/net/http/httptest",
-    "https://golang.testcontainers.org/"
+    "https://golang.testcontainers.org/",
+    "https://context7.com/websites/gin-gonic_en"
   ]
 }
