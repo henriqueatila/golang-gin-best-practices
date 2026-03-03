@@ -34,6 +34,15 @@ type AppError struct {
 
 func (e *AppError) Error() string { return e.Message }
 func (e *AppError) Unwrap() error  { return e.Err }
+func (e AppError) Is(target error) bool {
+    switch t := target.(type) {
+    case *AppError:
+        return e.Code == t.Code
+    case AppError:
+        return e.Code == t.Code
+    }
+    return false
+}
 
 // New wraps an underlying cause with a domain error.
 func (e *AppError) New(cause error) *AppError {
@@ -189,7 +198,7 @@ if errors.Is(err, domain.ErrNotFound) {
 }
 ```
 
-**Warning:** `errors.Is` compares by pointer identity on the sentinel. Wrapping with `.New(cause)` creates a new `*AppError`, breaking `errors.Is` comparison unless you implement `Is()` on `AppError`. Use `errors.As` for reliable matching.
+**Note:** `errors.Is` compares by pointer identity on the sentinel by default. Wrapping with `.New(cause)` creates a new `*AppError`, which would break `errors.Is` comparison — but `AppError` implements `Is()` (matching by `Code`), so `errors.Is(err, domain.ErrNotFound)` works correctly through the chain. Use `errors.As` when you need access to the full `AppError` value.
 
 ---
 

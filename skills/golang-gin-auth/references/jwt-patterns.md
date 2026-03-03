@@ -352,8 +352,12 @@ End-to-end wiring of auth routes with all patterns:
 package main
 
 import (
+    "context"
     "log/slog"
+    "net/http"
     "os"
+    "os/signal"
+    "syscall"
     "time"
 
     "github.com/gin-gonic/gin"
@@ -361,6 +365,7 @@ import (
     "myapp/internal/auth"
     "myapp/internal/handler"
     "myapp/internal/repository"
+    "myapp/internal/service"
     "myapp/pkg/middleware"
 )
 
