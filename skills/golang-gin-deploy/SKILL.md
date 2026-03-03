@@ -1,5 +1,5 @@
 ---
-name: gin-deploy
+name: golang-gin-deploy
 description: "Deploy Go Gin APIs with Docker, docker-compose, and Kubernetes. Covers multi-stage Dockerfiles, health checks, graceful shutdown, CI/CD pipelines, and production configuration. Use when containerizing a Go API, setting up local dev with Docker, deploying to Kubernetes, or configuring CI/CD for a Gin application. Also activate when the user mentions Docker build, docker-compose, K8s deployment, health probes, environment variables, or 12-factor app config for a Go/Gin project."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# gin-deploy — Containerization & Deployment
+# golang-gin-deploy — Containerization & Deployment
 
 Package and deploy Gin APIs to production. This skill covers the essential deployment patterns: multi-stage Docker builds, local dev with docker-compose, and Kubernetes manifests with health checks.
 
@@ -22,7 +22,7 @@ Package and deploy Gin APIs to production. This skill covers the essential deplo
 
 ## Multi-Stage Dockerfile
 
-Build a minimal production image from the `cmd/api/main.go` entry point (same structure as the **gin-api** skill).
+Build a minimal production image from the `cmd/api/main.go` entry point (same structure as the **golang-gin-api** skill).
 
 ```dockerfile
 # syntax=docker/dockerfile:1
@@ -64,7 +64,7 @@ ENTRYPOINT ["/server"]
 
 ## Health Check Endpoint
 
-Expose `/health` for container orchestrators. The endpoint from **gin-api** is used directly by K8s probes.
+Expose `/health` for container orchestrators. The endpoint from **golang-gin-api** is used directly by K8s probes.
 
 ```go
 // internal/handler/health_handler.go
@@ -303,7 +303,7 @@ volumes:
   postgres_data:
 ```
 
-For migration running in Docker, see the **gin-database** skill (`references/migrations.md`).
+For migration running in Docker, see the **golang-gin-database** skill (`references/migrations.md`).
 
 ## Reference Files
 
@@ -316,6 +316,6 @@ Load these when you need deeper detail:
 
 ## Cross-Skill References
 
-- For project structure this Dockerfile builds (`cmd/api/main.go`): see the **gin-api** skill
-- For health check handler used by K8s probes: see the **gin-api** skill
-- For running migrations in Docker (migrate service): see the **gin-database** skill (`references/migrations.md`)
+- For project structure this Dockerfile builds (`cmd/api/main.go`): see the **golang-gin-api** skill
+- For health check handler used by K8s probes: see the **golang-gin-api** skill
+- For running migrations in Docker (migrate service): see the **golang-gin-database** skill (`references/migrations.md`)

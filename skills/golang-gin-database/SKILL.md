@@ -1,5 +1,5 @@
 ---
-name: gin-database
+name: golang-gin-database
 description: "Integrate PostgreSQL databases with Go Gin APIs using GORM or sqlx. Covers repository pattern, connection pooling, transactions, migrations, and dependency injection. Use when adding database support, creating models, writing queries, implementing repositories, setting up migrations, or wiring database layers into a Gin project. Also activate when the user mentions GORM, sqlx, database connection, SQL queries, repository pattern, or database migrations in a Go/Gin context."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# gin-database — Database Integration
+# golang-gin-database — Database Integration
 
 Integrate PostgreSQL with Gin APIs using the repository pattern. Keeps database logic out of handlers and services, and supports swapping GORM ↔ sqlx without touching business logic.
 
@@ -270,7 +270,7 @@ func main() {
 }
 ```
 
-**Critical:** Read `DATABASE_URL` from environment, never hardcode credentials. See the **gin-deploy** skill for Docker/Kubernetes secrets.
+**Critical:** Read `DATABASE_URL` from environment, never hardcode credentials. See the **golang-gin-deploy** skill for Docker/Kubernetes secrets.
 
 ## Reference Files
 
@@ -282,7 +282,7 @@ Load these for deeper detail:
 
 ## Cross-Skill References
 
-- For dependency injection wiring and main.go patterns: see the **gin-api** skill
-- For testing repositories with a real database: see the **gin-testing** skill (integration tests)
-- For running migrations in Docker containers: see the **gin-deploy** skill
-- For user authentication using the UserRepository: see the **gin-auth** skill
+- For dependency injection wiring and main.go patterns: see the **golang-gin-api** skill
+- For testing repositories with a real database: see the **golang-gin-testing** skill (integration tests)
+- For running migrations in Docker containers: see the **golang-gin-deploy** skill
+- For user authentication using the UserRepository: see the **golang-gin-auth** skill

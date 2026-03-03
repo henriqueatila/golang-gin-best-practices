@@ -2,7 +2,7 @@
 
 This file covers: handler testing with `httptest`, testing authenticated routes with a mock JWT, service testing with manual mocks, middleware isolation, table-driven subtests, `t.Helper`/`t.Cleanup`/`t.Parallel`, and test fixtures.
 
-All examples use the same `User` domain model and `AppError` pattern from **gin-api**.
+All examples use the same `User` domain model and `AppError` pattern from **golang-gin-api**.
 
 ## Table of Contents
 

@@ -1,5 +1,5 @@
 ---
-name: gin-testing
+name: golang-gin-testing
 description: "Test Go Gin REST APIs with unit, integration, and end-to-end tests. Covers httptest patterns, table-driven tests, mocking repositories, testcontainers for real databases, and CI/CD integration. Use when writing tests for Gin handlers, services, middleware, or setting up test infrastructure for a Go API."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# gin-testing — Testing REST APIs
+# golang-gin-testing — Testing REST APIs
 
 Write confident tests for Gin APIs: unit tests with mocked repositories, integration tests with real PostgreSQL via testcontainers, and e2e tests for critical flows. This skill covers the 80% of testing patterns you need daily.
 
@@ -394,6 +394,6 @@ Load these when you need deeper detail:
 
 ## Cross-Skill References
 
-- For handler and service implementations being tested: see the **gin-api** skill
-- For `UserRepository` interface and GORM/sqlx implementations: see the **gin-database** skill
-- For JWT middleware and auth handler test patterns: see the **gin-auth** skill
+- For handler and service implementations being tested: see the **golang-gin-api** skill
+- For `UserRepository` interface and GORM/sqlx implementations: see the **golang-gin-database** skill
+- For JWT middleware and auth handler test patterns: see the **golang-gin-auth** skill

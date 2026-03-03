@@ -1,5 +1,5 @@
 ---
-name: gin-api
+name: golang-gin-api
 description: "Build REST APIs with Go Gin framework. Covers routing, handler patterns, request binding/validation, middleware chains, error handling, and project structure. Use when creating Go web servers, REST endpoints, HTTP handlers, or working with the Gin framework. Also activate when the user mentions Gin routes, middleware, JSON responses, request parsing, or API structure in Go."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# gin-api — Core REST API Development
+# golang-gin-api — Core REST API Development
 
 Build production-grade REST APIs with Go and Gin. This skill covers the 80% of patterns you need daily: server setup, routing, request binding, response formatting, and error handling.
 
@@ -364,7 +364,7 @@ Load these when you need deeper detail:
 
 ## Cross-Skill References
 
-- For JWT middleware to protect routes: see the **gin-auth** skill
-- For wiring repositories into services and handlers: see the **gin-database** skill
-- For testing handlers and services: see the **gin-testing** skill
-- For Dockerizing this project structure: see the **gin-deploy** skill
+- For JWT middleware to protect routes: see the **golang-gin-auth** skill
+- For wiring repositories into services and handlers: see the **golang-gin-database** skill
+- For testing handlers and services: see the **golang-gin-testing** skill
+- For Dockerizing this project structure: see the **golang-gin-deploy** skill

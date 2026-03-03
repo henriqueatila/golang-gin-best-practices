@@ -516,4 +516,4 @@ docker compose down
 docker compose down -v
 ```
 
-**For migration running in this compose setup**, the app service runs migrations on startup via `repository.RunMigrations` (library mode). See the **gin-database** skill (`references/migrations.md`) for startup vs CI/CD migration strategy.
+**For migration running in this compose setup**, the app service runs migrations on startup via `repository.RunMigrations` (library mode). See the **golang-gin-database** skill (`references/migrations.md`) for startup vs CI/CD migration strategy.

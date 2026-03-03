@@ -1,5 +1,5 @@
 ---
-name: gin-auth
+name: golang-gin-auth
 description: "Implement authentication and authorization in Go Gin APIs. Covers JWT middleware, login/register handlers, role-based access control (RBAC), token refresh, and protected routes. Use when adding auth, login, signup, JWT tokens, user sessions, permissions, or role checks to a Gin application."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# gin-auth — Authentication & Authorization
+# golang-gin-auth — Authentication & Authorization
 
 Add JWT-based authentication and role-based access control to a Gin API. This skill covers the patterns you need for secure APIs: JWT middleware, login handler, token lifecycle, and RBAC.
 
@@ -347,6 +347,6 @@ Load these when you need deeper detail:
 
 ## Cross-Skill References
 
-- For handler patterns (ShouldBindJSON, error responses, route groups): see the **gin-api** skill
-- For `UserRepository` interface and `GetByEmail` implementation: see the **gin-database** skill
-- For testing JWT middleware and auth handlers: see the **gin-testing** skill
+- For handler patterns (ShouldBindJSON, error responses, route groups): see the **golang-gin-api** skill
+- For `UserRepository` interface and `GetByEmail` implementation: see the **golang-gin-database** skill
+- For testing JWT middleware and auth handlers: see the **golang-gin-testing** skill

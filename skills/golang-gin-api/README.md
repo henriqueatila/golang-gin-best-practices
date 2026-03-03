@@ -1,4 +1,4 @@
-# gin-api
+# golang-gin-api
 
 Core REST API patterns for the Go Gin framework.
 
@@ -16,5 +16,5 @@ Core REST API patterns for the Go Gin framework.
 ## Install
 
 ```bash
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-api
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-api
 ```

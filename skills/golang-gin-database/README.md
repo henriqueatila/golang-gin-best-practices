@@ -1,4 +1,4 @@
-# gin-database
+# golang-gin-database
 
 PostgreSQL integration for Go Gin APIs using GORM and sqlx.
 
@@ -16,5 +16,5 @@ PostgreSQL integration for Go Gin APIs using GORM and sqlx.
 ## Install
 
 ```bash
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-database
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-database
 ```

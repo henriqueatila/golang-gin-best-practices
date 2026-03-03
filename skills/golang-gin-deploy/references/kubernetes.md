@@ -235,7 +235,7 @@ kubectl create secret generic myapp-secret \
 
 ## Liveness and Readiness Probes
 
-Both probes hit the `/health` endpoint from the **gin-api** skill's `HealthHandler`.
+Both probes hit the `/health` endpoint from the **golang-gin-api** skill's `HealthHandler`.
 
 ```yaml
 livenessProbe:
@@ -569,7 +569,7 @@ spec:
             name: db-migrations
 ```
 
-See the **gin-database** skill (`references/migrations.md`) for the full migration strategy and zero-downtime patterns.
+See the **golang-gin-database** skill (`references/migrations.md`) for the full migration strategy and zero-downtime patterns.
 
 ---
 
