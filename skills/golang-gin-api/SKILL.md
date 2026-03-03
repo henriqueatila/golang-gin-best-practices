@@ -65,6 +65,7 @@ func main() {
 
     // Production: gin.New() + explicit middleware (NOT gin.Default())
     r := gin.New()
+    r.SetTrustedProxies([]string{"10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"}) // proxy CIDRs — c.ClientIP() is spoofable without this
     r.Use(middleware.Logger(logger))
     r.Use(middleware.Recovery(logger))
 

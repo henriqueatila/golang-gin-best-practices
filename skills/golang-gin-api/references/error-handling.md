@@ -202,6 +202,8 @@ Gin binding errors (`ShouldBindJSON` failure) return raw `validator/v10` error m
 package handler
 
 import (
+    "errors"
+    "fmt"
     "net/http"
 
     "github.com/gin-gonic/gin"
@@ -315,8 +317,8 @@ Register in main.go:
 
 ```go
 r := gin.New()
-r.Use(middleware.Recovery(logger))
 r.Use(middleware.Logger(logger))
+r.Use(middleware.Recovery(logger))
 ```
 
 ---

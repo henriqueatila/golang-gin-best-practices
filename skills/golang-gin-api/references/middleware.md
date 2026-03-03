@@ -66,6 +66,7 @@ package middleware
 
 import (
     "os"
+    "strings"
     "time"
 
     "github.com/gin-contrib/cors"
