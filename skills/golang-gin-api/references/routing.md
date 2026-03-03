@@ -235,6 +235,9 @@ r.NoRoute(func(c *gin.Context) {
     })
 })
 
+// Required — NoMethod handler only fires when this is true (default: false)
+r.HandleMethodNotAllowed = true
+
 r.NoMethod(func(c *gin.Context) {
     c.JSON(http.StatusMethodNotAllowed, gin.H{
         "error":  "method not allowed",
@@ -254,8 +257,12 @@ Register custom validators via the `go-playground/validator/v10` engine. Do this
 package validation
 
 import (
+    "fmt"
+    "time"
+
     "github.com/gin-gonic/gin/binding"
     "github.com/go-playground/validator/v10"
+    "github.com/google/uuid"
 )
 
 func Register() error {

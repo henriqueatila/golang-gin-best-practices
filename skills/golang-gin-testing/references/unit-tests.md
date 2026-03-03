@@ -189,6 +189,7 @@ package handler_test
 
 import (
     "context"
+    "log/slog"
     "net/http"
     "net/http/httptest"
     "testing"
@@ -198,6 +199,7 @@ import (
     "myapp/internal/auth"
     "myapp/internal/domain"
     "myapp/internal/handler"
+    "myapp/internal/service"
     "myapp/pkg/middleware"
 )
 
@@ -625,6 +627,7 @@ Test middleware logic (JWT validation, rate limiting, RBAC) independently of any
 package middleware_test
 
 import (
+    "log/slog"
     "net/http"
     "net/http/httptest"
     "testing"
