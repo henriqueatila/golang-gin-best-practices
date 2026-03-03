@@ -286,3 +286,7 @@ Load these for deeper detail:
 - For testing repositories with a real database: see the **golang-gin-testing** skill (integration tests)
 - For running migrations in Docker containers: see the **golang-gin-deploy** skill
 - For user authentication using the UserRepository: see the **golang-gin-auth** skill
+
+## Official Docs
+
+If this skill doesn't cover your use case, consult the [GORM documentation](https://gorm.io/docs/), [sqlx GoDoc](https://pkg.go.dev/github.com/jmoiron/sqlx), or [Gin GoDoc](https://pkg.go.dev/github.com/gin-gonic/gin).

@@ -397,3 +397,7 @@ Load these when you need deeper detail:
 - For handler and service implementations being tested: see the **golang-gin-api** skill
 - For `UserRepository` interface and GORM/sqlx implementations: see the **golang-gin-database** skill
 - For JWT middleware and auth handler test patterns: see the **golang-gin-auth** skill
+
+## Official Docs
+
+If this skill doesn't cover your use case, consult the [Go testing package](https://pkg.go.dev/testing), [httptest GoDoc](https://pkg.go.dev/net/http/httptest), or [testcontainers-go docs](https://golang.testcontainers.org/).

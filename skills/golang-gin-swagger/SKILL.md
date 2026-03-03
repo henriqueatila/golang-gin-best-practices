@@ -319,3 +319,7 @@ Load these when you need deeper detail:
 - For JWT middleware and `@securityDefinitions.apikey BearerAuth`: see the **golang-gin-auth** skill
 - For testing annotated handlers: see the **golang-gin-testing** skill
 - For adding `swag init` to Docker builds: see the **golang-gin-deploy** skill
+
+## Official Docs
+
+If this skill doesn't cover your use case, consult the [swag GitHub](https://github.com/swaggo/swag), [gin-swagger GoDoc](https://pkg.go.dev/github.com/swaggo/gin-swagger), or [Swagger 2.0 spec](https://swagger.io/specification/v2/).

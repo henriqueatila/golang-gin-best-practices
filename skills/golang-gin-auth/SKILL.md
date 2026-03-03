@@ -350,3 +350,7 @@ Load these when you need deeper detail:
 - For handler patterns (ShouldBindJSON, error responses, route groups): see the **golang-gin-api** skill
 - For `UserRepository` interface and `GetByEmail` implementation: see the **golang-gin-database** skill
 - For testing JWT middleware and auth handlers: see the **golang-gin-testing** skill
+
+## Official Docs
+
+If this skill doesn't cover your use case, consult the [Gin documentation](https://gin-gonic.com/docs/), [golang-jwt GoDoc](https://pkg.go.dev/github.com/golang-jwt/jwt/v5), or [Gin GoDoc](https://pkg.go.dev/github.com/gin-gonic/gin).

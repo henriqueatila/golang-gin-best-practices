@@ -319,3 +319,7 @@ Load these when you need deeper detail:
 - For project structure this Dockerfile builds (`cmd/api/main.go`): see the **golang-gin-api** skill
 - For health check handler used by K8s probes: see the **golang-gin-api** skill
 - For running migrations in Docker (migrate service): see the **golang-gin-database** skill (`references/migrations.md`)
+
+## Official Docs
+
+If this skill doesn't cover your use case, consult the [Docker documentation](https://docs.docker.com/), [Kubernetes documentation](https://kubernetes.io/docs/), or [OpenTelemetry Go docs](https://opentelemetry.io/docs/languages/go/).

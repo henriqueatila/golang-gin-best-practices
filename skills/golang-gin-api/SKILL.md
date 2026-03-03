@@ -370,3 +370,7 @@ Load these when you need deeper detail:
 - For wiring repositories into services and handlers: see the **golang-gin-database** skill
 - For testing handlers and services: see the **golang-gin-testing** skill
 - For Dockerizing this project structure: see the **golang-gin-deploy** skill
+
+## Official Docs
+
+If this skill doesn't cover your use case, consult the [Gin documentation](https://gin-gonic.com/docs/) or [Gin GoDoc](https://pkg.go.dev/github.com/gin-gonic/gin).
