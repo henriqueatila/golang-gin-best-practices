@@ -4,7 +4,7 @@ description: "Deploy Go Gin APIs with Docker, docker-compose, and Kubernetes. Co
 license: MIT
 metadata:
   author: henriqueatila
-  version: "1.0.2"
+  version: 1.0.3
 ---
 
 # golang-gin-deploy — Containerization & Deployment

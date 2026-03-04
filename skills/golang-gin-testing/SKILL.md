@@ -4,7 +4,7 @@ description: "Test Go Gin REST APIs with unit, integration, and end-to-end tests
 license: MIT
 metadata:
   author: henriqueatila
-  version: "1.0.2"
+  version: 1.0.3
 ---
 
 # golang-gin-testing — Testing REST APIs

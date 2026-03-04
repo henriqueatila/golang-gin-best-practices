@@ -4,7 +4,7 @@ description: "Generate Swagger/OpenAPI documentation for Go Gin APIs using swagg
 license: MIT
 metadata:
   author: henriqueatila
-  version: "1.0.0"
+  version: 1.0.3
 ---
 
 # golang-gin-swagger — Swagger/OpenAPI Documentation

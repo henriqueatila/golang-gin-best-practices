@@ -4,7 +4,7 @@ description: "Integrate PostgreSQL databases with Go Gin APIs using GORM or sqlx
 license: MIT
 metadata:
   author: henriqueatila
-  version: "1.0.3"
+  version: 1.0.4
 ---
 
 # golang-gin-database — Database Integration

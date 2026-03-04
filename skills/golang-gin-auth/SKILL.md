@@ -4,7 +4,7 @@ description: "Implement authentication and authorization in Go Gin APIs. Covers 
 license: MIT
 metadata:
   author: henriqueatila
-  version: "1.0.3"
+  version: 1.0.4
 ---
 
 # golang-gin-auth — Authentication & Authorization

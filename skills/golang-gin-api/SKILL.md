@@ -4,7 +4,7 @@ description: "Build REST APIs with Go Gin framework. Covers routing, handler pat
 license: MIT
 metadata:
   author: henriqueatila
-  version: "1.0.4"
+  version: 1.0.5
 ---
 
 # golang-gin-api — Core REST API Development
