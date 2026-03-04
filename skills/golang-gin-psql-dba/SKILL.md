@@ -1,15 +1,15 @@
 ---
-name: gin-psql-dba
-description: "PostgreSQL DBA and architect skill for Go Gin APIs. Covers schema design decisions, migration impact analysis, index strategy, query optimization, partitioning, connection pool sizing, and the PostgreSQL extension ecosystem (ParadeDB, pgvector, PostGIS, TimescaleDB). Use when designing schemas, analyzing migration safety, choosing indexes, optimizing queries, selecting extensions, or making any PostgreSQL architecture decision. This is the 'how to think' complement to gin-database's 'how to connect.' Also activate when the user mentions EXPLAIN ANALYZE, lock levels, zero-downtime migration, full-text search, vector embeddings, geospatial queries, time-series data, or database performance tuning."
+name: golang-gin-psql-dba
+description: "PostgreSQL DBA and architect skill for Go Gin APIs. Covers schema design decisions, migration impact analysis, index strategy, query optimization, partitioning, connection pool sizing, and the PostgreSQL extension ecosystem (ParadeDB, pgvector, PostGIS, TimescaleDB). Use when designing schemas, analyzing migration safety, choosing indexes, optimizing queries, selecting extensions, or making any PostgreSQL architecture decision. This is the 'how to think' complement to golang-gin-database's 'how to connect.' Also activate when the user mentions EXPLAIN ANALYZE, lock levels, zero-downtime migration, full-text search, vector embeddings, geospatial queries, time-series data, or database performance tuning."
 license: MIT
 metadata:
   author: henriqueatila
   version: "1.0.0"
 ---
 
-# gin-psql-dba — PostgreSQL DBA / Architect
+# golang-gin-psql-dba — PostgreSQL DBA / Architect
 
-Make PostgreSQL architecture decisions for Go Gin APIs. Schema design, migration safety, index strategy, query optimization, and extension selection. Uses raw SQL via sqlx — for ORM patterns, see the **gin-database** skill.
+Make PostgreSQL architecture decisions for Go Gin APIs. Schema design, migration safety, index strategy, query optimization, and extension selection. Uses raw SQL via sqlx — for ORM patterns, see the **golang-gin-database** skill.
 
 ## When to Use
 
@@ -21,7 +21,7 @@ Make PostgreSQL architecture decisions for Go Gin APIs. Schema design, migration
 - Selecting a PostgreSQL extension (search, vectors, geospatial, time-series)
 - Deciding on partitioning strategy
 
-**gin-psql-dba vs gin-database:** gin-database covers GORM/sqlx wiring, repository pattern, and migrations tooling (golang-migrate). gin-psql-dba covers the PostgreSQL decisions *behind* those patterns — what data types to pick, which index to create, how to ALTER TABLE safely, and when to reach for an extension.
+**golang-gin-psql-dba vs golang-gin-database:** golang-gin-database covers GORM/sqlx wiring, repository pattern, and migrations tooling (golang-migrate). golang-gin-psql-dba covers the PostgreSQL decisions *behind* those patterns — what data types to pick, which index to create, how to ALTER TABLE safely, and when to reach for an extension.
 
 ## Schema Design Quick Rules
 
@@ -216,7 +216,7 @@ Load these for deeper detail:
 
 ## Cross-Skill References
 
-- For GORM/sqlx repository implementations and migrations tooling: see the **gin-database** skill
-- For testing database queries with testcontainers: see the **gin-testing** skill
-- For PostgreSQL Docker setup and Kubernetes StatefulSets: see the **gin-deploy** skill
-- For handler patterns that call repository methods: see the **gin-api** skill
+- For GORM/sqlx repository implementations and migrations tooling: see the **golang-gin-database** skill
+- For testing database queries with testcontainers: see the **golang-gin-testing** skill
+- For PostgreSQL Docker setup and Kubernetes StatefulSets: see the **golang-gin-deploy** skill
+- For handler patterns that call repository methods: see the **golang-gin-api** skill

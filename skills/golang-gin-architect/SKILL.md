@@ -1,5 +1,5 @@
 ---
-name: gin-architect
+name: golang-gin-architect
 description: "Software architect skill for Go Gin APIs. Covers system design, complexity assessment, scalability patterns, API design, cross-cutting concerns, ADRs, tech debt management, and gingo skill orchestration. Use when making architecture decisions, evaluating complexity, designing systems, choosing patterns, planning API evolution, or coordinating across multiple gin skills. Also activate when the user mentions microservices vs monolith, CQRS, event sourcing, domain modeling, bounded contexts, API versioning, caching strategy, observability, or tech debt. This is the 'brain' that orchestrates all other gin skills."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
   version: "1.0.0"
 ---
 
-# gin-architect — Pragmatic Software Architect
+# golang-gin-architect — Pragmatic Software Architect
 
 Think like a Staff Engineer who knows how to build the complex but chooses the simple. This skill guides architecture decisions for Go Gin APIs — system design, pattern selection, API evolution, and cross-cutting concerns. Orchestrates all other gin skills.
 
@@ -17,12 +17,12 @@ Think like a Staff Engineer who knows how to build the complex but chooses the s
 
 Starting a new Gin project from scratch? Follow this sequence:
 
-1. **gin-architect** — Define complexity budget, choose project structure (small/medium/large)
-2. **gin-api** — Scaffold project: `cmd/api/main.go`, handlers, `AppError`, middleware
-3. **gin-database** — Add PostgreSQL: repository pattern, connection pooling, migrations
-4. **gin-auth** — Add JWT auth + RBAC middleware (if needed)
-5. **gin-testing** — Write unit + integration tests with testcontainers
-6. **gin-deploy** — Containerize: multi-stage Dockerfile, docker-compose, CI/CD
+1. **golang-gin-architect** — Define complexity budget, choose project structure (small/medium/large)
+2. **golang-gin-api** — Scaffold project: `cmd/api/main.go`, handlers, `AppError`, middleware
+3. **golang-gin-database** — Add PostgreSQL: repository pattern, connection pooling, migrations
+4. **golang-gin-auth** — Add JWT auth + RBAC middleware (if needed)
+5. **golang-gin-testing** — Write unit + integration tests with testcontainers
+6. **golang-gin-deploy** — Containerize: multi-stage Dockerfile, docker-compose, CI/CD
 
 Skip steps 4-6 until you actually need them. Steps 1-3 cover most MVPs.
 
@@ -117,7 +117,7 @@ myapp/
 └── go.mod
 ```
 
-**Skills:** gin-api + gin-database + gin-testing. That's it.
+**Skills:** golang-gin-api + golang-gin-database + golang-gin-testing. That's it.
 
 ### Medium (3-8 devs, 20-100 endpoints) — Feature Modules
 
@@ -192,22 +192,22 @@ For complete API design patterns: see [references/api-design.md](references/api-
 
 | Task | Primary Skill | Supporting Skills |
 |---|---|---|
-| New CRUD endpoint | **gin-api** | gin-database, gin-testing |
-| Add authentication | **gin-auth** | gin-api (route setup) |
-| Schema design / migration | **gin-psql-dba** | gin-database (tooling) |
-| Repository / ORM setup | **gin-database** | gin-psql-dba (schema decisions) |
-| Performance issue | **gin-psql-dba** | gin-testing (benchmarks) |
-| Containerize / deploy | **gin-deploy** | gin-testing (CI integration) |
-| Write tests | **gin-testing** | (reads all other skills) |
-| Architecture decision | **gin-architect** | Routes to others as needed |
+| New CRUD endpoint | **golang-gin-api** | golang-gin-database, golang-gin-testing |
+| Add authentication | **golang-gin-auth** | golang-gin-api (route setup) |
+| Schema design / migration | **golang-gin-psql-dba** | golang-gin-database (tooling) |
+| Repository / ORM setup | **golang-gin-database** | golang-gin-psql-dba (schema decisions) |
+| Performance issue | **golang-gin-psql-dba** | golang-gin-testing (benchmarks) |
+| Containerize / deploy | **golang-gin-deploy** | golang-gin-testing (CI integration) |
+| Write tests | **golang-gin-testing** | (reads all other skills) |
+| Architecture decision | **golang-gin-architect** | Routes to others as needed |
 
 **Orchestration rules:**
-1. Always start with `gin-architect` for architecture decisions — it routes to specific skills
-2. `gin-api` + `gin-database` are the daily workhorses — most features only need these
-3. `gin-psql-dba` is for database *decisions* (schema, indexes, perf); `gin-database` is for *code* (GORM/sqlx)
-4. `gin-auth` is standalone — activate only when adding/modifying auth flows
-5. `gin-deploy` is end-of-cycle — containerize after features work locally
-6. `gin-testing` is continuous — activate after every implementation
+1. Always start with `golang-gin-architect` for architecture decisions — it routes to specific skills
+2. `golang-gin-api` + `golang-gin-database` are the daily workhorses — most features only need these
+3. `golang-gin-psql-dba` is for database *decisions* (schema, indexes, perf); `golang-gin-database` is for *code* (GORM/sqlx)
+4. `golang-gin-auth` is standalone — activate only when adding/modifying auth flows
+5. `golang-gin-deploy` is end-of-cycle — containerize after features work locally
+6. `golang-gin-testing` is continuous — activate after every implementation
 
 For detailed orchestration flows: see [references/skill-orchestration.md](references/skill-orchestration.md).
 
@@ -246,16 +246,16 @@ START: Is data read more than written?
 
 ### Security Architecture Checklist
 
-- [ ] Input validation on all endpoints (ShouldBind + sanitize) → gin-api
-- [ ] JWT auth with short-lived tokens + refresh → gin-auth
-- [ ] RBAC middleware on protected routes → gin-auth
-- [ ] Rate limiting per IP and per user → gin-api (rate-limiting reference)
-- [ ] CORS configured for known origins only → gin-api (middleware reference)
-- [ ] SQL injection prevention (parameterized queries) → gin-database
-- [ ] Row-level security for multi-tenant → gin-psql-dba
-- [ ] Secrets in environment variables, never in code → gin-deploy
-- [ ] HTTPS termination at load balancer → gin-deploy
-- [ ] Dependency scanning in CI → gin-deploy
+- [ ] Input validation on all endpoints (ShouldBind + sanitize) → golang-gin-api
+- [ ] JWT auth with short-lived tokens + refresh → golang-gin-auth
+- [ ] RBAC middleware on protected routes → golang-gin-auth
+- [ ] Rate limiting per IP and per user → golang-gin-api (rate-limiting reference)
+- [ ] CORS configured for known origins only → golang-gin-api (middleware reference)
+- [ ] SQL injection prevention (parameterized queries) → golang-gin-database
+- [ ] Row-level security for multi-tenant → golang-gin-psql-dba
+- [ ] Secrets in environment variables, never in code → golang-gin-deploy
+- [ ] HTTPS termination at load balancer → golang-gin-deploy
+- [ ] Dependency scanning in CI → golang-gin-deploy
 
 For complete cross-cutting patterns: see [references/cross-cutting-concerns.md](references/cross-cutting-concerns.md).
 
@@ -315,9 +315,9 @@ Load these for deeper detail:
 
 ## Cross-Skill References
 
-- For REST endpoint implementation patterns: see the **gin-api** skill
-- For JWT auth and RBAC: see the **gin-auth** skill
-- For PostgreSQL schema and query decisions: see the **gin-psql-dba** skill
-- For GORM/sqlx repository code: see the **gin-database** skill
-- For testing strategies: see the **gin-testing** skill
-- For Docker, K8s, and CI/CD: see the **gin-deploy** skill
+- For REST endpoint implementation patterns: see the **golang-gin-api** skill
+- For JWT auth and RBAC: see the **golang-gin-auth** skill
+- For PostgreSQL schema and query decisions: see the **golang-gin-psql-dba** skill
+- For GORM/sqlx repository code: see the **golang-gin-database** skill
+- For testing strategies: see the **golang-gin-testing** skill
+- For Docker, K8s, and CI/CD: see the **golang-gin-deploy** skill

@@ -12,13 +12,13 @@ Agent Skills for building production-grade REST APIs with Go and the Gin framewo
 
 | Skill | Description | Install |
 |---|---|---|
-| **gin-architect** | Software architect — system design, complexity assessment, API design, skill orchestration | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-architect` |
-| **gin-api** | Core REST API — routing, handlers, binding, error handling, project structure | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-api` |
-| **gin-auth** | JWT authentication, login handler, RBAC middleware, token lifecycle | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-auth` |
-| **gin-database** | PostgreSQL with GORM or sqlx, repository pattern, migrations, connection pooling | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-database` |
-| **gin-psql-dba** | PostgreSQL DBA — schema design, index strategy, migration safety, extensions (ParadeDB, pgvector, PostGIS, TimescaleDB) | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-psql-dba` |
-| **gin-testing** | Unit tests with httptest, integration tests with testcontainers, e2e flows | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-testing` |
-| **gin-deploy** | Multi-stage Dockerfile, docker-compose, Kubernetes manifests, CI/CD pipelines | `npx skills add henriqueatila/golang-gin-best-practices --skill gin-deploy` |
+| **golang-gin-architect** | Software architect — system design, complexity assessment, API design, skill orchestration | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-architect` |
+| **golang-gin-api** | Core REST API — routing, handlers, binding, error handling, project structure | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-api` |
+| **golang-gin-auth** | JWT authentication, login handler, RBAC middleware, token lifecycle | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-auth` |
+| **golang-gin-database** | PostgreSQL with GORM or sqlx, repository pattern, migrations, connection pooling | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-database` |
+| **golang-gin-psql-dba** | PostgreSQL DBA — schema design, index strategy, migration safety, extensions (ParadeDB, pgvector, PostGIS, TimescaleDB) | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba` |
+| **golang-gin-testing** | Unit tests with httptest, integration tests with testcontainers, e2e flows | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing` |
+| **golang-gin-deploy** | Multi-stage Dockerfile, docker-compose, Kubernetes manifests, CI/CD pipelines | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-deploy` |
 
 ---
 
@@ -27,38 +27,38 @@ Agent Skills for building production-grade REST APIs with Go and the Gin framewo
 ### Install all skills
 
 ```bash
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-architect
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-api
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-auth
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-database
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-psql-dba
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-testing
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-deploy
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-architect
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-api
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-auth
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-database
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-deploy
 ```
 
 ### Install individual skills
 
 ```bash
 # Architecture brain — system design, complexity assessment, skill orchestration
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-architect
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-architect
 
 # Core API only
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-api
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-api
 
 # Add authentication to an existing project
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-auth
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-auth
 
 # Add database layer
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-database
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-database
 
 # Add DBA/architect guidance (schema design, indexes, extensions)
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-psql-dba
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba
 
 # Add testing infrastructure
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-testing
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing
 
 # Add deployment configuration
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-deploy
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-deploy
 ```
 
 ### Manual installation
@@ -66,9 +66,9 @@ npx skills add henriqueatila/golang-gin-best-practices --skill gin-deploy
 Download the zip package for any skill from the `skills/` directory and extract it into your project's `.claude/skills/` folder:
 
 ```bash
-# Example: download and extract gin-api
-curl -L https://github.com/henriqueatila/golang-gin-best-practices/raw/main/skills/gin-api.zip -o gin-api.zip
-unzip gin-api.zip -d .claude/skills/gin-api/
+# Example: download and extract golang-gin-api
+curl -L https://github.com/henriqueatila/golang-gin-best-practices/raw/main/skills/golang-gin-api.zip -o golang-gin-api.zip
+unzip golang-gin-api.zip -d .claude/skills/golang-gin-api/
 ```
 
 ---
@@ -88,15 +88,15 @@ This means the agent loads minimal context by default and fetches reference file
 
 Skills are designed to work together with shared conventions:
 
-- **gin-architect** is the "brain" — assesses complexity, selects patterns, routes to specific skills, and orchestrates workflows
-- **gin-api** defines the project structure, `AppError` type, and handler patterns that all other skills follow
-- **gin-auth** provides JWT middleware consumed by **gin-api** route groups
-- **gin-database** provides the `UserRepository` interface and implementations used by **gin-auth** and **gin-api** handlers
-- **gin-psql-dba** provides PostgreSQL architecture decisions (schema design, indexes, migrations, extensions) that inform **gin-database** implementations
-- **gin-testing** tests the handlers, services, and middleware defined across all skills
-- **gin-deploy** builds the project structure from **gin-api** and wires health checks from **gin-api**
+- **golang-gin-architect** is the "brain" — assesses complexity, selects patterns, routes to specific skills, and orchestrates workflows
+- **golang-gin-api** defines the project structure, `AppError` type, and handler patterns that all other skills follow
+- **golang-gin-auth** provides JWT middleware consumed by **golang-gin-api** route groups
+- **golang-gin-database** provides the `UserRepository` interface and implementations used by **golang-gin-auth** and **golang-gin-api** handlers
+- **golang-gin-psql-dba** provides PostgreSQL architecture decisions (schema design, indexes, migrations, extensions) that inform **golang-gin-database** implementations
+- **golang-gin-testing** tests the handlers, services, and middleware defined across all skills
+- **golang-gin-deploy** builds the project structure from **golang-gin-api** and wires health checks from **golang-gin-api**
 
-Start with `gin-architect` for architecture decisions, `gin-api` for implementation, and add skills incrementally as your project grows.
+Start with `golang-gin-architect` for architecture decisions, `golang-gin-api` for implementation, and add skills incrementally as your project grows.
 
 ---
 
@@ -110,7 +110,7 @@ golang-gin-best-practices/
 ├── LICENSE
 │
 ├── skills/
-│   ├── gin-architect/
+│   ├── golang-gin-architect/
 │   │   ├── SKILL.md                 # System design, complexity assessment, skill orchestration
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -133,7 +133,7 @@ golang-gin-best-practices/
 │   │       ├── grpc-interop.md           # Gin HTTP + gRPC coexistence
 │   │       └── data-ownership.md         # Database-per-service, data sync
 │   │
-│   ├── gin-api/
+│   ├── golang-gin-api/
 │   │   ├── SKILL.md                 # Server setup, routing, handlers, binding, errors
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -144,7 +144,7 @@ golang-gin-best-practices/
 │   │       ├── websocket.md         # gorilla/websocket, hub pattern, auth, ping/pong
 │   │       └── rate-limiting.md     # Token bucket, sliding window, Redis, tiered limits
 │   │
-│   ├── gin-auth/
+│   ├── golang-gin-auth/
 │   │   ├── SKILL.md                 # JWT middleware, login handler, RBAC, token lifecycle
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -152,7 +152,7 @@ golang-gin-best-practices/
 │   │       ├── jwt-patterns.md      # Token refresh, blacklisting (Redis), RS256 vs HS256
 │   │       └── rbac.md              # RequireRole, permissions, multi-tenant authorization
 │   │
-│   ├── gin-database/
+│   ├── golang-gin-database/
 │   │   ├── SKILL.md                 # Repository pattern, GORM/sqlx, connection pooling, DI
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -161,7 +161,7 @@ golang-gin-best-practices/
 │   │       ├── sqlx-patterns.md     # Struct scanning, NamedExec, IN clauses, transactions
 │   │       └── migrations.md        # golang-migrate CLI, zero-downtime, seeding, rollback
 │   │
-│   ├── gin-psql-dba/
+│   ├── golang-gin-psql-dba/
 │   │   ├── SKILL.md                 # Schema design, index strategy, migration safety, extensions
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -179,7 +179,7 @@ golang-gin-best-practices/
 │   │       ├── backup-and-recovery.md       # pg_dump, WAL archiving, PITR
 │   │       └── replication-and-ha.md        # Streaming replication, Patroni, failover
 │   │
-│   ├── gin-testing/
+│   ├── golang-gin-testing/
 │   │   ├── SKILL.md                 # httptest, table-driven tests, mock repositories
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -188,7 +188,7 @@ golang-gin-best-practices/
 │   │       ├── integration-tests.md # testcontainers, TestMain, DB lifecycle, cleanup
 │   │       └── e2e.md               # Full flows, docker-compose tests, GitHub Actions CI
 │   │
-│   ├── gin-deploy/
+│   ├── golang-gin-deploy/
 │   │   ├── SKILL.md                 # Multi-stage Dockerfile, docker-compose, health checks
 │   │   ├── metadata.json
 │   │   ├── README.md
@@ -198,11 +198,11 @@ golang-gin-best-practices/
 │   │       ├── kubernetes.md        # Deployment, Service, ConfigMap, HPA, Ingress, Helm
 │   │       └── observability.md     # OpenTelemetry tracing, metrics, slog correlation
 │   │
-│   ├── gin-api.zip                  # Packaged skill (SKILL.md + references/)
-│   ├── gin-auth.zip
-│   ├── gin-database.zip
-│   ├── gin-deploy.zip
-│   └── gin-testing.zip
+│   ├── golang-gin-api.zip                  # Packaged skill (SKILL.md + references/)
+│   ├── golang-gin-auth.zip
+│   ├── golang-gin-database.zip
+│   ├── golang-gin-deploy.zip
+│   └── golang-gin-testing.zip
 ```
 
 ---

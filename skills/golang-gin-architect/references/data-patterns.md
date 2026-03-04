@@ -724,7 +724,7 @@ func (r *UserRepository) readDB(ctx context.Context) *sqlx.DB {
 }
 ```
 
-For PostgreSQL replication setup and monitoring: see [gin-psql-dba/references/replication-and-ha.md](../../gin-psql-dba/references/replication-and-ha.md).
+For PostgreSQL replication setup and monitoring: see [golang-gin-psql-dba/references/replication-and-ha.md](../../golang-gin-psql-dba/references/replication-and-ha.md).
 
 ---
 

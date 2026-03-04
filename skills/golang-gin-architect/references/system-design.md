@@ -638,7 +638,7 @@ myapp/
 
 One package per layer. Simple to navigate. Works until the team grows or domains start to conflict.
 
-**Activate:** gin-api + gin-database + gin-testing. No gin-architect needed yet.
+**Activate:** golang-gin-api + golang-gin-database + golang-gin-testing. No golang-gin-architect needed yet.
 
 ### Medium: 3-8 devs, 20-100 endpoints — Feature Modules
 
@@ -753,5 +753,5 @@ Each feature module receives `*sqlx.DB` via constructor injection from `main.go`
 - For resilience patterns (circuit breaker, bulkhead, retry): see **[resilience-patterns.md](resilience-patterns.md)**
 - For API versioning and contract design: see **[api-design.md](api-design.md)**
 - For observability, caching, security architecture: see **[cross-cutting-concerns.md](cross-cutting-concerns.md)**
-- For repository and ORM code: see the **gin-database** skill
-- For handler and middleware implementation: see the **gin-api** skill
+- For repository and ORM code: see the **golang-gin-database** skill
+- For handler and middleware implementation: see the **golang-gin-api** skill

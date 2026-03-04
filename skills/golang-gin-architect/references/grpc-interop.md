@@ -442,7 +442,7 @@ CMD ["/server"]
 |-------|-----------|
 | Clean architecture layering (usecase/handler separation) | `references/clean-architecture.md` |
 | Service decomposition decisions | `references/system-design.md` |
-| Deployment, ports, health checks | `gin-deploy` skill |
+| Deployment, ports, health checks | `golang-gin-deploy` skill |
 | Gin middleware patterns | `references/middleware-patterns.md` |
 
 ---

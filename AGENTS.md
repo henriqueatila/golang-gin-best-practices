@@ -4,7 +4,7 @@ Multi-agent guidance for the `golang-gin-best-practices` repository.
 
 ## Repository Overview
 
-6 Agent Skills for Go/Gin REST API development, published on skills.sh. Skills live under `skills/`, build docs under `docs/`.
+7 Agent Skills for Go/Gin REST API development, published on skills.sh. Skills live under `skills/`, build docs under `docs/`.
 
 ## Agent Roles
 
@@ -41,5 +41,5 @@ Multi-agent guidance for the `golang-gin-best-practices` repository.
 
 - All code examples must compile, handle errors, use `context.Context`, and use `log/slog`
 - Use the shared `User` domain model across all skills (defined in `docs/SPECIFICATION.md`)
-- Cross-skill references use skill name (e.g., "see the **golang-gin-api** skill"), not file paths
+- Cross-skill references use skill name (e.g., "see the **gin-api** skill"), not file paths
 - Conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`

@@ -2,7 +2,7 @@
 
 Every `ALTER TABLE` on a live PostgreSQL database acquires a lock. The lock level and duration determine whether your migration is invisible to users or causes a full outage. This reference covers PostgreSQL's lock hierarchy, which operations are safe online, zero-downtime patterns for every dangerous operation, batched backfill in Go, the NOT VALID constraint technique, lock_timeout defense, and a pre/post migration checklist. Use when evaluating any schema change against a production database running a Gin API.
 
-> **Scope:** PostgreSQL 14+. All Go code uses `log/slog`, `context.Context`, `fmt.Errorf`, and `sqlx` — no GORM. For migration tooling (golang-migrate CLI, startup vs CI/CD strategy), see the **gin-database** skill's `references/migrations.md`.
+> **Scope:** PostgreSQL 14+. All Go code uses `log/slog`, `context.Context`, `fmt.Errorf`, and `sqlx` — no GORM. For migration tooling (golang-migrate CLI, startup vs CI/CD strategy), see the **golang-gin-database** skill's `references/migrations.md`.
 
 ## Table of Contents
 

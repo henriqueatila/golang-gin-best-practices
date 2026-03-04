@@ -763,9 +763,9 @@ docker exec rabbitmq rabbitmqctl purge_queue email.send
 |---|---|
 | Database transactions for outbox pattern | `data-patterns.md` → Transactional Outbox section |
 | Circuit breaker around message publish | `resilience-patterns.md` → Circuit Breaker section |
-| Deployment and scaling workers | `gin-deploy` skill → Worker Process section |
+| Deployment and scaling workers | `golang-gin-deploy` skill → Worker Process section |
 | Redis client setup for dedup | `data-patterns.md` → Redis section |
-| Structured logging conventions | `gin-architect` skill → `logging-patterns.md` |
+| Structured logging conventions | `golang-gin-architect` skill → `logging-patterns.md` |
 
 ---
 

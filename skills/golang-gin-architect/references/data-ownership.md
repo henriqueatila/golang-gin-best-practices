@@ -435,4 +435,4 @@ Each service runs as its own binary, owns its own database, communicates via HTT
 | `system-design.md` | Bounded context analysis and service boundary design |
 | `data-patterns.md` | CQRS, Transactional Outbox, Saga pattern for distributed writes |
 | `messaging-patterns.md` | Event-driven sync implementation with RabbitMQ / NATS |
-| `gin-psql-dba` skill | Schema design, migrations, and PostgreSQL schema isolation |
+| `golang-gin-psql-dba` skill | Schema design, migrations, and PostgreSQL schema isolation |

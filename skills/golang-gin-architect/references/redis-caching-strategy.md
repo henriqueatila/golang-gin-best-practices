@@ -586,5 +586,5 @@ go get golang.org/x/sync
 | Basic Redis get/set/TTL patterns | `cross-cutting-concerns.md` → Redis Cache section |
 | Circuit breaker around Redis calls | `resilience-patterns.md` → Circuit Breaker section |
 | Health check endpoint for Redis | `cross-cutting-concerns.md` → Health Checks |
-| Deployment: Redis config, sentinel, cluster | `gin-deploy` skill (separate) |
+| Deployment: Redis config, sentinel, cluster | `golang-gin-deploy` skill (separate) |
 | Structured logging with slog | `cross-cutting-concerns.md` → Logging section |

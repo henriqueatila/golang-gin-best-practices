@@ -85,7 +85,7 @@ volumes:
   pgdata:
 ```
 
-> For full orchestration with PgBouncer, replicas, and production hardening: see the **gin-deploy** skill.
+> For full orchestration with PgBouncer, replicas, and production hardening: see the **golang-gin-deploy** skill.
 
 ---
 

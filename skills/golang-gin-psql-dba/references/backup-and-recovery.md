@@ -663,7 +663,7 @@ volumes:
   postgres_data:
 ```
 
-Cross-reference: for PostgreSQL Docker setup with proper health checks and persistent volumes, see [gin-deploy/references/docker-compose.md](../../gin-deploy/references/docker-compose.md).
+Cross-reference: for PostgreSQL Docker setup with proper health checks and persistent volumes, see [golang-gin-deploy/references/docker-compose.md](../../golang-gin-deploy/references/docker-compose.md).
 
 ---
 

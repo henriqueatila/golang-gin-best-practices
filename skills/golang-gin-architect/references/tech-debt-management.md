@@ -341,7 +341,7 @@ Best debt is debt you never take on.
 
 ### At Design Time
 
-- Use complexity assessment (→ gin-architect) before building
+- Use complexity assessment (→ golang-gin-architect) before building
 - Write an ADR for non-obvious decisions
 - Start with the simplest pattern that works
 - Set up CI/CD and tests from day one

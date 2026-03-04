@@ -1,6 +1,6 @@
-# gin-psql-dba
+# golang-gin-psql-dba
 
-PostgreSQL DBA and architect skill for Go Gin APIs — the "how to think" complement to gin-database's "how to connect."
+PostgreSQL DBA and architect skill for Go Gin APIs — the "how to think" complement to golang-gin-database's "how to connect."
 
 ## What's Included
 
@@ -25,5 +25,5 @@ PostgreSQL DBA and architect skill for Go Gin APIs — the "how to think" comple
 ## Install
 
 ```bash
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-psql-dba
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba
 ```

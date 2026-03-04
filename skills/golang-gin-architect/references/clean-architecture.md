@@ -379,6 +379,6 @@ If none of these apply, the flat layout with implicit layering (handler → serv
 
 - For project structure at different scales: see **[system-design.md](system-design.md)** (package layouts, bounded contexts)
 - For complexity budget (is this overkill?): see **[complexity-assessment.md](complexity-assessment.md)**
-- For repository and ORM patterns: see the **gin-database** skill
-- For handler and middleware implementation: see the **gin-api** skill
-- For testing layers in isolation: see the **gin-testing** skill
+- For repository and ORM patterns: see the **golang-gin-database** skill
+- For handler and middleware implementation: see the **golang-gin-api** skill
+- For testing layers in isolation: see the **golang-gin-testing** skill

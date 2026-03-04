@@ -2,7 +2,7 @@
 
 How errors flow through clean architecture layers in Go Gin APIs. Covers domain error types, wrapping conventions, layer-to-layer mapping, and the complete error chain from database to HTTP response.
 
-**Companion to:** `gin-api` skill → `error-handling.md` (HTTP handler side). This file covers the architectural view — layer boundaries, wrapping conventions, and the full chain.
+**Companion to:** `golang-gin-api` skill → `error-handling.md` (HTTP handler side). This file covers the architectural view — layer boundaries, wrapping conventions, and the full chain.
 
 ## Table of Contents
 
@@ -438,11 +438,11 @@ Readable stack of context without a single `%v` that would break the chain.
 
 | Skill / File | What It Covers |
 |---|---|
-| `gin-api` → `error-handling.md` | AppError struct, panic recovery middleware, validation error binding (HTTP handler side) |
-| `gin-architect` → `clean-architecture.md` | Layer boundaries, dependency rule, interface definitions |
-| `gin-architect` → `cross-cutting-concerns.md` | Logging strategy, middleware placement, observability |
-| `gin-database` → `repository-pattern.md` | Repository interface definition, sqlx/GORM implementations |
-| `gin-testing` | Testing `mapDomainError`, error path coverage in service unit tests |
+| `golang-gin-api` → `error-handling.md` | AppError struct, panic recovery middleware, validation error binding (HTTP handler side) |
+| `golang-gin-architect` → `clean-architecture.md` | Layer boundaries, dependency rule, interface definitions |
+| `golang-gin-architect` → `cross-cutting-concerns.md` | Logging strategy, middleware placement, observability |
+| `golang-gin-database` → `repository-pattern.md` | Repository interface definition, sqlx/GORM implementations |
+| `golang-gin-testing` | Testing `mapDomainError`, error path coverage in service unit tests |
 
 **Summary of responsibilities:**
 

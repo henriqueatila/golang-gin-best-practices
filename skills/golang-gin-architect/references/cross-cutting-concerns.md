@@ -274,7 +274,7 @@ r.GET("/health/ready", health.Readiness)
 
 ```
 START: Is data read more than written?
-  ├── No → No cache. Optimize queries instead (→ gin-psql-dba).
+  ├── No → No cache. Optimize queries instead (→ golang-gin-psql-dba).
   └── Yes → Is data the same for all users?
       ├── Yes → HTTP Cache-Control headers. Zero infrastructure cost.
       └── No (per-user data) → Is total cached data < 100MB?
@@ -424,12 +424,12 @@ Internet → Load Balancer (TLS termination, DDoS protection)
 ```
 
 Each layer reference:
-- Load balancer / TLS → **gin-deploy** skill
-- Rate limiting, CORS → **gin-api** skill (middleware reference)
-- Auth middleware → **gin-auth** skill
-- Input validation → **gin-api** skill
-- Parameterized queries → **gin-database** skill
-- RLS, encryption → **gin-psql-dba** skill
+- Load balancer / TLS → **golang-gin-deploy** skill
+- Rate limiting, CORS → **golang-gin-api** skill (middleware reference)
+- Auth middleware → **golang-gin-auth** skill
+- Input validation → **golang-gin-api** skill
+- Parameterized queries → **golang-gin-database** skill
+- RLS, encryption → **golang-gin-psql-dba** skill
 
 ### Secret Management
 

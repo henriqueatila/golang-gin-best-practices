@@ -442,10 +442,10 @@ func (r *UserRepository) FindByID(ctx context.Context, id string) (*User, error)
 
 | Topic | Skill |
 |---|---|
-| Handler patterns, `ShouldBind*`, response helpers | `gin-api` |
-| Repository patterns, `sqlx.GetContext`, migrations | `gin-database` |
-| JWT middleware, auth groups | `gin-auth` |
-| Docker, env config, health checks for k8s | `gin-deploy` |
+| Handler patterns, `ShouldBind*`, response helpers | `golang-gin-api` |
+| Repository patterns, `sqlx.GetContext`, migrations | `golang-gin-database` |
+| JWT middleware, auth groups | `golang-gin-auth` |
+| Docker, env config, health checks for k8s | `golang-gin-deploy` |
 | Clean architecture folder structure | `references/clean-architecture.md` |
 | Middleware implementation details | `references/cross-cutting-concerns.md` |
 

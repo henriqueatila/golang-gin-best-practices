@@ -2,7 +2,7 @@
 
 pgvector is an open-source PostgreSQL extension that adds a native `vector` column type and similarity-search operators, turning a standard PostgreSQL database into a vector store. It powers semantic search, retrieval-augmented generation (RAG), recommendation engines, and image similarity — all without a separate vector database. This reference covers extension setup, schema design, index selection, distance functions, similarity queries, Go integration via `pgvector-go` and `sqlx`, embedding generation patterns, capacity planning, and performance tuning.
 
-> **Architectural note:** These are DBA/architecture patterns. For repository wiring (sqlx connection setup, struct scanning): see the **gin-database** skill. For Docker/Kubernetes setup: see the **gin-deploy** skill.
+> **Architectural note:** These are DBA/architecture patterns. For repository wiring (sqlx connection setup, struct scanning): see the **golang-gin-database** skill. For Docker/Kubernetes setup: see the **golang-gin-deploy** skill.
 
 ## Table of Contents
 
@@ -89,7 +89,7 @@ Run once per database (include in your first migration):
 CREATE EXTENSION IF NOT EXISTS vector;
 ```
 
-Cross-reference: for migration tooling (golang-migrate), see [gin-database/references/migrations.md](../../gin-database/references/migrations.md). For full Docker setup: see [gin-deploy/references/docker-compose.md](../../gin-deploy/references/docker-compose.md).
+Cross-reference: for migration tooling (golang-migrate), see [golang-gin-database/references/migrations.md](../../golang-gin-database/references/migrations.md). For full Docker setup: see [golang-gin-deploy/references/docker-compose.md](../../golang-gin-deploy/references/docker-compose.md).
 
 ---
 
@@ -742,7 +742,7 @@ REINDEX INDEX CONCURRENTLY idx_documents_embedding;
 ---
 
 *Cross-references:*
-- *Extension setup and Docker: [gin-deploy/references/docker-compose.md](../../gin-deploy/references/docker-compose.md)*
-- *Migration tooling: [gin-database/references/migrations.md](../../gin-database/references/migrations.md)*
-- *sqlx patterns: [gin-database/references/sqlx-patterns.md](../../gin-database/references/sqlx-patterns.md)*
-- *Hybrid search with BM25: [gin-psql-dba/references/paradedb-full-text-search.md](paradedb-full-text-search.md)*
+- *Extension setup and Docker: [golang-gin-deploy/references/docker-compose.md](../../golang-gin-deploy/references/docker-compose.md)*
+- *Migration tooling: [golang-gin-database/references/migrations.md](../../golang-gin-database/references/migrations.md)*
+- *sqlx patterns: [golang-gin-database/references/sqlx-patterns.md](../../golang-gin-database/references/sqlx-patterns.md)*
+- *Hybrid search with BM25: [golang-gin-psql-dba/references/paradedb-full-text-search.md](paradedb-full-text-search.md)*

@@ -384,7 +384,7 @@ func beginWithTenant(t *testing.T, db *sqlx.DB, tenantID string) *sqlx.Tx {
 
 ### Using testcontainers for RLS tests
 
-RLS requires a real PostgreSQL instance — no SQLite mock will work. Use `testcontainers-go` to spin up a real Postgres container, apply migrations (which include `CREATE POLICY`), and connect as `app_user` (not the superuser). The `gin-testing` skill has the full testcontainers wiring.
+RLS requires a real PostgreSQL instance — no SQLite mock will work. Use `testcontainers-go` to spin up a real Postgres container, apply migrations (which include `CREATE POLICY`), and connect as `app_user` (not the superuser). The `golang-gin-testing` skill has the full testcontainers wiring.
 
 Critical: if the test connection uses the `postgres` superuser, RLS is bypassed and isolation tests pass trivially without actually enforcing anything.
 

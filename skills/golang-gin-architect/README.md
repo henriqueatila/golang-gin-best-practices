@@ -1,4 +1,4 @@
-# gin-architect
+# golang-gin-architect
 
 Pragmatic software architecture for Go Gin APIs. The "brain" that orchestrates all other gin skills.
 
@@ -30,5 +30,5 @@ Pragmatic software architecture for Go Gin APIs. The "brain" that orchestrates a
 ## Install
 
 ```bash
-npx skills add henriqueatila/golang-gin-best-practices --skill gin-architect
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-architect
 ```

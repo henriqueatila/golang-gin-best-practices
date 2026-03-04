@@ -50,7 +50,7 @@ volumes:
   pgdata:
 ```
 
-For production containers and Kubernetes StatefulSet patterns, cross-reference the **gin-deploy** skill.
+For production containers and Kubernetes StatefulSet patterns, cross-reference the **golang-gin-deploy** skill.
 
 ---
 
@@ -559,6 +559,6 @@ ORDER BY idx_scan DESC;
 A `idx_scan` count of 0 after normal traffic means the planner is ignoring the index — run `ANALYZE stores;` to refresh statistics, then re-check.
 
 **Cross-skill references:**
-- Docker/Kubernetes deployment of PostGIS containers: **gin-deploy** skill
-- sqlx connection setup and repository wiring: **gin-database** skill → [sqlx-patterns.md](../../gin-database/references/sqlx-patterns.md)
-- Testing spatial queries with testcontainers-go: **gin-testing** skill
+- Docker/Kubernetes deployment of PostGIS containers: **golang-gin-deploy** skill
+- sqlx connection setup and repository wiring: **golang-gin-database** skill → [sqlx-patterns.md](../../golang-gin-database/references/sqlx-patterns.md)
+- Testing spatial queries with testcontainers-go: **golang-gin-testing** skill

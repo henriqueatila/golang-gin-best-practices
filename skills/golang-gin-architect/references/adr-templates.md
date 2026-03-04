@@ -384,17 +384,17 @@ Add Redis later only if measured latency exceeds targets.
 
 ### Negative
 - Horizontal scaling is harder than MongoDB (but we won't need it at 50K RPM)
-- Schema changes require migrations (mitigated by gin-psql-dba migration safety guide)
+- Schema changes require migrations (mitigated by golang-gin-psql-dba migration safety guide)
 
 ### Risks
 - If product schemas become truly unpredictable → mitigated by JSONB columns
 - If full-text search outgrows tsvector → mitigated by ParadeDB upgrade path
 
 ## Follow-up Actions
-- [x] Set up PostgreSQL 16 with Docker (gin-deploy)
-- [x] Define initial schema (gin-psql-dba)
-- [ ] Configure connection pooling (gin-psql-dba)
-- [ ] Set up backup strategy (gin-psql-dba)
+- [x] Set up PostgreSQL 16 with Docker (golang-gin-deploy)
+- [x] Define initial schema (golang-gin-psql-dba)
+- [ ] Configure connection pooling (golang-gin-psql-dba)
+- [ ] Set up backup strategy (golang-gin-psql-dba)
 ```
 
 ---

@@ -1,6 +1,6 @@
 # Complexity Assessment Reference
 
-This file is the deep-dive companion to `gin-architect/SKILL.md`. It covers the complexity budget framework, full decision trees, right-size thinking calibrated to team and product stage, pattern selection matrix, and "you don't need this yet" gates for every major architectural pattern. Load this when evaluating whether a proposed architecture is appropriately sized — or over-engineered.
+This file is the deep-dive companion to `golang-gin-architect/SKILL.md`. It covers the complexity budget framework, full decision trees, right-size thinking calibrated to team and product stage, pattern selection matrix, and "you don't need this yet" gates for every major architectural pattern. Load this when evaluating whether a proposed architecture is appropriately sized — or over-engineered.
 
 ## Table of Contents
 

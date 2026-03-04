@@ -266,7 +266,7 @@ err := resilience.Retry(ctx, resilience.DefaultRetryConfig, func() error {
 
 ## 4. Rate Limiting at Architecture Level
 
-Rate limiting in a single Gin instance (middleware) is covered in [gin-api/references/rate-limiting.md](../../gin-api/references/rate-limiting.md). This section covers architectural decisions.
+Rate limiting in a single Gin instance (middleware) is covered in [golang-gin-api/references/rate-limiting.md](../../golang-gin-api/references/rate-limiting.md). This section covers architectural decisions.
 
 ### Decision Matrix
 
@@ -295,7 +295,7 @@ authenticated.Use(authMiddleware, middleware.TieredRateLimiter(rdb, tiers, "rl:a
 
 ### Distributed Rate Limiting with Redis
 
-For multi-instance deployments, all instances share the same Redis counter. See `gin-api/references/rate-limiting.md` for the Lua-based token bucket and sliding window implementations.
+For multi-instance deployments, all instances share the same Redis counter. See `golang-gin-api/references/rate-limiting.md` for the Lua-based token bucket and sliding window implementations.
 
 **Key design choices:**
 - Key by user ID (from JWT `sub` claim) over IP — survives NAT and mobile IP changes

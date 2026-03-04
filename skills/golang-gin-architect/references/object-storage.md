@@ -449,8 +449,8 @@ setting real credentials — no code changes required.
 
 | Topic | Skill | File |
 |---|---|---|
-| Route registration for upload/download endpoints | `gin-api` | `references/routing.md` |
-| Middleware for auth-gating upload endpoints | `gin-api` | `references/middleware.md` |
-| Storing S3 keys in PostgreSQL (file metadata table) | `gin-architect` | `references/database-patterns.md` |
-| Env var injection for `S3_*` in production | `gin-deploy` | `references/environment-config.md` |
-| Docker Compose composition for full stack | `gin-deploy` | `references/docker-compose.md` |
+| Route registration for upload/download endpoints | `golang-gin-api` | `references/routing.md` |
+| Middleware for auth-gating upload endpoints | `golang-gin-api` | `references/middleware.md` |
+| Storing S3 keys in PostgreSQL (file metadata table) | `golang-gin-architect` | `references/database-patterns.md` |
+| Env var injection for `S3_*` in production | `golang-gin-deploy` | `references/environment-config.md` |
+| Docker Compose composition for full stack | `golang-gin-deploy` | `references/docker-compose.md` |

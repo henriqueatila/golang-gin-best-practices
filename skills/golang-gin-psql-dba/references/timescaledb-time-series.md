@@ -77,7 +77,7 @@ CREATE EXTENSION IF NOT EXISTS timescaledb;
 
 Run this in your first migration. All subsequent migrations use standard SQL — no TimescaleDB-specific migration tool needed.
 
-**Cross-reference:** For full docker-compose patterns with health checks and Air hot reload, see the **gin-deploy** skill → `references/docker-compose.md`.
+**Cross-reference:** For full docker-compose patterns with health checks and Air hot reload, see the **golang-gin-deploy** skill → `references/docker-compose.md`.
 
 ---
 
