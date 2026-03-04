@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "organization": "henriqueatila",
+  "date": "March 2026",
+  "abstract": "PostgreSQL DBA and architect skill for Go Gin APIs — schema design, migration impact analysis, index strategy, query optimization, and extensions (ParadeDB, pgvector, PostGIS, TimescaleDB).",
+  "references": [
+    "https://www.postgresql.org/docs/current/",
+    "https://pkg.go.dev/github.com/jmoiron/sqlx",
+    "https://pkg.go.dev/github.com/jackc/pgx/v5",
+    "https://docs.paradedb.com/",
+    "https://github.com/pgvector/pgvector",
+    "https://postgis.net/documentation/",
+    "https://docs.timescale.com/",
+    "https://context7.com/websites/gin-gonic_en"
+  ]
+}

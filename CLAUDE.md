@@ -4,19 +4,20 @@ Agent guidance for the `golang-gin-best-practices` repository.
 
 ## What This Repo Is
 
-A collection of 6 Agent Skills for building production-grade REST APIs with Go and the Gin framework. Published on [skills.sh](https://skills.sh). Each skill lives under `skills/` and follows the [Agent Skills open standard](https://agentskills.io).
+A collection of 7 Agent Skills for building production-grade REST APIs with Go and the Gin framework. Published on [skills.sh](https://skills.sh). Each skill lives under `skills/` and follows the [Agent Skills open standard](https://agentskills.io).
 
 ## Repository Structure
 
 ```
 golang-gin-best-practices/
 ├── skills/
-│   ├── golang-gin-api/          # Core REST API — routing, handlers, binding, errors
-│   ├── golang-gin-auth/         # JWT auth, RBAC middleware, token lifecycle
-│   ├── golang-gin-database/     # PostgreSQL with GORM/sqlx, repository pattern
-│   ├── golang-gin-deploy/       # Docker, docker-compose, Kubernetes, CI/CD
-│   ├── golang-gin-testing/      # Unit, integration, and e2e tests
-│   └── golang-gin-swagger/      # Swagger/OpenAPI docs with swaggo/swag
+│   ├── gin-architect/    # Software architect — system design, complexity assessment, skill orchestration
+│   ├── gin-api/          # Core REST API — routing, handlers, binding, errors
+│   ├── gin-auth/         # JWT auth, RBAC middleware, token lifecycle
+│   ├── gin-database/     # PostgreSQL with GORM/sqlx, repository pattern
+│   ├── gin-psql-dba/     # PostgreSQL DBA — schema design, indexes, migrations, extensions
+│   ├── gin-deploy/       # Docker, docker-compose, Kubernetes, CI/CD
+│   └── gin-testing/      # Unit, integration, and e2e tests
 ├── CLAUDE.md             # This file (agent guidance)
 ├── AGENTS.md             # Multi-agent guidance
 ├── README.md             # Project overview
