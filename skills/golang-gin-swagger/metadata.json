@@ -2,7 +2,7 @@
   "version": "1.0.3",
   "organization": "henriqueatila",
   "date": "March 2026",
-  "abstract": "Swagger/OpenAPI documentation for Go Gin APIs using swaggo/swag — annotation syntax, model tags, Swagger UI setup, JWT security definitions, and CI/CD integration.",
+  "abstract": "Swagger/OpenAPI documentation for Go Gin APIs using swaggo/swag — full CRUD + auth endpoint annotations, model tags, Swagger UI setup, JWT security definitions, and CI/CD integration.",
   "references": [
     "https://github.com/swaggo/swag",
     "https://github.com/swaggo/gin-swagger",

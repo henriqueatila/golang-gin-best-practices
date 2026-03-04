@@ -2,7 +2,7 @@
   "version": "1.0.5",
   "organization": "henriqueatila",
   "date": "March 2026",
-  "abstract": "Core REST API patterns for the Go Gin framework — routing, handlers, request binding/validation, middleware chains, error handling, and layered project structure.",
+  "abstract": "Core REST API patterns for Go Gin — routing, handlers, request binding/validation, middleware chains, error handling, security headers (OWASP), CORS, structured logging, timeout middleware, and layered project structure.",
   "references": [
     "https://gin-gonic.com/docs/",
     "https://pkg.go.dev/github.com/gin-gonic/gin",

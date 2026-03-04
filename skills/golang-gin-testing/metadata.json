@@ -2,7 +2,7 @@
   "version": "1.0.3",
   "organization": "henriqueatila",
   "date": "March 2026",
-  "abstract": "Testing patterns for Go Gin REST APIs — unit tests with httptest, table-driven tests, mock repositories, integration tests with testcontainers, and e2e test flows.",
+  "abstract": "Testing patterns for Go Gin REST APIs — unit tests, table-driven tests, benchmarks, fuzz tests, golden file snapshots, testcontainers integration, e2e flows, coverage thresholds, and race detection.",
   "references": [
     "https://gin-gonic.com/docs/",
     "https://pkg.go.dev/net/http/httptest",
