@@ -75,6 +75,8 @@ Load these when you need deeper detail:
 - **[references/auth-implementation.md](references/auth-implementation.md)** — Claims struct, token generation/validation, JWT middleware, login/register handlers, rate limiter, protected route wiring, getting current user
 - **[references/jwt-patterns.md](references/jwt-patterns.md)** — Access + refresh token architecture, token refresh endpoint, token blacklisting (Redis), RS256 vs HS256, custom claims, storage recommendations (httpOnly cookie vs localStorage), CSRF protection, complete auth flow
 - **[references/rbac.md](references/rbac.md)** — RequireRole/RequireAnyRole middleware, permission-based access, role hierarchy, multi-tenant authorization, resource-level authorization, complete RBAC example
+- **[references/oauth2.md](references/oauth2.md)** — OAuth2/social login: GitHub and Google flows, CSRF state management, token exchange, user creation, route wiring
+- **[references/captcha.md](references/captcha.md)** — CAPTCHA middleware: reCAPTCHA v2/v3 and hCaptcha server-side verification, route application for public forms
 
 ## Cross-Skill References
 

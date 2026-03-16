@@ -85,6 +85,7 @@ Load these for deeper detail:
 - **[references/gorm-patterns.md](references/gorm-patterns.md)** — GORM model definition, CRUD, soft deletes, scopes, preloading, raw SQL, batch ops, hooks, connection pooling, PostgreSQL-specific features, complete repository implementation
 - **[references/sqlx-patterns.md](references/sqlx-patterns.md)** — Connection setup, struct scanning, Get/Select/NamedExec, safe dynamic queries, sqlx.In, null handling, query builder, complete repository implementation
 - **[references/migrations.md](references/migrations.md)** — golang-migrate CLI and library usage, file naming, zero-downtime migrations, startup vs CI/CD strategy, seeding, rollback
+- **[references/redis-patterns.md](references/redis-patterns.md)** — Redis integration: cache-aside pattern, session/blacklist storage, distributed rate limiting, cache invalidation, health checks
 
 ## Cross-Skill References
 

@@ -77,6 +77,8 @@ Load these when you need deeper detail:
 - **[references/error-handling.md](references/error-handling.md)** — Full AppError system, sentinel errors, validation error formatting, panic recovery, consistent JSON error format
 - **[references/websocket.md](references/websocket.md)** — WebSocket with gorilla/websocket: upgrade handler, hub pattern, auth before upgrade, ping/pong keepalive, graceful shutdown, JSON messages, testing
 - **[references/rate-limiting.md](references/rate-limiting.md)** — Deep-dive rate limiting: token bucket, sliding window, Redis distributed, per-user/API-key quotas, tiered limits, response headers, graceful degradation
+- **[references/file-uploads.md](references/file-uploads.md)** — File upload patterns: single/multiple files, struct binding, S3/cloud storage, MIME validation, security checklist
+- **[references/background-jobs.md](references/background-jobs.md)** — Background processing: goroutine with c.Copy(), worker pools, DB-backed queues, external queues (asynq), graceful shutdown
 
 ## Cross-Skill References
 
