@@ -17,7 +17,8 @@ Agent Skills for building production-grade REST APIs with Go and the Gin framewo
 | **golang-gin-auth** | JWT authentication, login handler, RBAC middleware, token lifecycle | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-auth` |
 | **golang-gin-database** | PostgreSQL with GORM or sqlx, repository pattern, migrations, connection pooling | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-database` |
 | **golang-gin-psql-dba** | PostgreSQL DBA — schema design, index strategy, migration safety, extensions (ParadeDB, pgvector, PostGIS, TimescaleDB) | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba` |
-| **golang-gin-testing** | Unit tests with httptest, integration tests with testcontainers, e2e flows | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing` |
+| **golang-gin-swagger** | Swagger/OpenAPI docs with swaggo/swag, annotations, Swagger UI, doc generation | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-swagger` |
+| **golang-gin-testing** | Unit tests with httptest, integration tests with testcontainers, e2e flows, load testing | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing` |
 | **golang-gin-deploy** | Multi-stage Dockerfile, docker-compose, Kubernetes manifests, CI/CD pipelines | `npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-deploy` |
 
 ---
@@ -32,6 +33,7 @@ npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-api
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-auth
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-database
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-swagger
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-deploy
 ```
@@ -53,6 +55,9 @@ npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-databa
 
 # Add DBA/architect guidance (schema design, indexes, extensions)
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-psql-dba
+
+# Add Swagger/OpenAPI documentation
+npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-swagger
 
 # Add testing infrastructure
 npx skills add henriqueatila/golang-gin-best-practices --skill golang-gin-testing
@@ -79,8 +84,8 @@ unzip golang-gin-api.zip -d .claude/skills/golang-gin-api/
 
 Each skill follows a two-level structure:
 
-1. **SKILL.md** — The 80% you need daily. Loaded automatically by the agent. Covers the most common patterns with complete, compilable code examples. Under 500 lines.
-2. **references/*.md** — The 20% for specific scenarios. Loaded on demand when you need deeper detail. Each file focuses on one topic.
+1. **SKILL.md** — Quick-reference guide loaded automatically. Covers key rules, conventions, and patterns in under 150 lines. Includes a Quality Mindset section inspired by [NoPUA](https://github.com/wuji-labs/nopua) for trust-based problem-solving.
+2. **references/*.md** — Deep-dive files loaded on demand. Each covers one topic with complete, compilable code examples.
 
 This means the agent loads minimal context by default and fetches reference files only when needed — keeping token usage low while providing comprehensive coverage.
 
@@ -94,9 +99,29 @@ Skills are designed to work together with shared conventions:
 - **golang-gin-database** provides the `UserRepository` interface and implementations used by **golang-gin-auth** and **golang-gin-api** handlers
 - **golang-gin-psql-dba** provides PostgreSQL architecture decisions (schema design, indexes, migrations, extensions) that inform **golang-gin-database** implementations
 - **golang-gin-testing** tests the handlers, services, and middleware defined across all skills
+- **golang-gin-swagger** documents the endpoints from **golang-gin-api** and **golang-gin-auth** with OpenAPI annotations
 - **golang-gin-deploy** builds the project structure from **golang-gin-api** and wires health checks from **golang-gin-api**
 
 Start with `golang-gin-architect` for architecture decisions, `golang-gin-api` for implementation, and add skills incrementally as your project grows.
+
+---
+
+## Security Coverage
+
+Skills collectively prevent common vulnerabilities:
+
+| Threat | Skill | Technique |
+|--------|-------|-----------|
+| SQL Injection | database | Parameterized queries (`?` / `$N`), never string concatenation |
+| XSS | api | `html.EscapeString` + `strings.TrimSpace` after binding |
+| Brute Force | auth | `IPRateLimiter` middleware on auth endpoints |
+| Token Theft | auth | JWT blacklisting (jti), short TTL, refresh rotation |
+| Slowloris DoS | api | `ReadHeaderTimeout: 10s` on `http.Server` |
+| IP Spoofing | api | `r.SetTrustedProxies()` for `c.ClientIP()` |
+| Credential Leak | api, deploy | `json:"-"` on PasswordHash, env vars, `.dockerignore` |
+| CAPTCHA Bypass | auth | Server-side reCAPTCHA/hCaptcha verification middleware |
+| Path Traversal | api | `filepath.Base(file.Filename)` for uploads |
+| Data Leaks | api | Generic error messages, `err.Error()` never exposed to clients |
 
 ---
 
@@ -136,26 +161,34 @@ golang-gin-best-practices/
 │   │   ├── SKILL.md                 # Server setup, routing, handlers, binding, errors
 │   │   ├── metadata.json
 │   │   └── references/
+│   │       ├── server-and-handlers.md # Graceful shutdown, domain model, handler patterns, DI
 │   │       ├── routing.md           # Route groups, versioning, pagination, file uploads
 │   │       ├── middleware.md        # CORS, rate limiting, request ID, timeout, recovery
 │   │       ├── error-handling.md    # AppError system, validation errors, panic recovery
 │   │       ├── websocket.md         # gorilla/websocket, hub pattern, auth, ping/pong
-│   │       └── rate-limiting.md     # Token bucket, sliding window, Redis, tiered limits
+│   │       ├── rate-limiting.md     # Token bucket, sliding window, Redis, tiered limits
+│   │       ├── file-uploads.md      # Single/multi upload, S3, MIME validation, security
+│   │       └── background-jobs.md   # Goroutines, worker pool, DB queue, asynq
 │   │
 │   ├── golang-gin-auth/
 │   │   ├── SKILL.md                 # JWT middleware, login handler, RBAC, token lifecycle
 │   │   ├── metadata.json
 │   │   └── references/
+│   │       ├── auth-implementation.md # Claims, token gen/parse, JWT middleware, login/register
 │   │       ├── jwt-patterns.md      # Token refresh, blacklisting (Redis), RS256 vs HS256
-│   │       └── rbac.md              # RequireRole, permissions, multi-tenant authorization
+│   │       ├── rbac.md              # RequireRole, permissions, multi-tenant authorization
+│   │       ├── oauth2.md            # GitHub/Google social login, CSRF state, token exchange
+│   │       └── captcha.md           # reCAPTCHA/hCaptcha server-side verification middleware
 │   │
 │   ├── golang-gin-database/
 │   │   ├── SKILL.md                 # Repository pattern, GORM/sqlx, connection pooling, DI
 │   │   ├── metadata.json
 │   │   └── references/
+│   │       ├── setup-and-repositories.md # Connection setup, retry, GORM/sqlx repos, transactions
 │   │       ├── gorm-patterns.md     # Models, CRUD, soft deletes, transactions, hooks
 │   │       ├── sqlx-patterns.md     # Struct scanning, NamedExec, IN clauses, transactions
-│   │       └── migrations.md        # golang-migrate CLI, zero-downtime, seeding, rollback
+│   │       ├── migrations.md        # golang-migrate CLI, zero-downtime, seeding, rollback
+│   │       └── redis-patterns.md    # Cache-aside, JWT blacklist, distributed rate limiting
 │   │
 │   ├── golang-gin-psql-dba/
 │   │   ├── SKILL.md                 # Schema design, index strategy, migration safety, extensions
@@ -174,18 +207,29 @@ golang-gin-best-practices/
 │   │       ├── backup-and-recovery.md       # pg_dump, WAL archiving, PITR
 │   │       └── replication-and-ha.md        # Streaming replication, Patroni, failover
 │   │
+│   ├── golang-gin-swagger/
+│   │   ├── SKILL.md                 # Swagger/OpenAPI annotations, Swagger UI, doc generation
+│   │   ├── metadata.json
+│   │   └── references/
+│   │       ├── setup-and-models.md  # General annotations, UI setup, model tags, build tags
+│   │       ├── annotations.md       # All @Param types, file uploads, response headers
+│   │       └── ci-cd.md             # GitHub Actions, PR validation, pre-commit hooks
+│   │
 │   ├── golang-gin-testing/
 │   │   ├── SKILL.md                 # httptest, table-driven tests, mock repositories
 │   │   ├── metadata.json
 │   │   └── references/
+│   │       ├── test-patterns.md     # Test helpers, handler tests, service tests
 │   │       ├── unit-tests.md        # Handler tests, middleware isolation, mock generation
 │   │       ├── integration-tests.md # testcontainers, TestMain, DB lifecycle, cleanup
-│   │       └── e2e.md               # Full flows, docker-compose tests, GitHub Actions CI
+│   │       ├── e2e.md               # Full flows, docker-compose tests, GitHub Actions CI
+│   │       └── load-testing.md      # Go benchmarks, vegeta, k6, CI regression detection
 │   │
 │   ├── golang-gin-deploy/
 │   │   ├── SKILL.md                 # Multi-stage Dockerfile, docker-compose, health checks
 │   │   ├── metadata.json
 │   │   └── references/
+│   │       ├── configuration-and-health.md # Health handler, probes, 12-factor config
 │   │       ├── dockerfile.md        # Distroless, build args, layer caching, image size
 │   │       ├── docker-compose.md    # Air hot reload, pgadmin, networking, integration tests
 │   │       ├── kubernetes.md        # Deployment, Service, ConfigMap, HPA, Ingress, Helm
@@ -194,6 +238,7 @@ golang-gin-best-practices/
 │   ├── golang-gin-api.zip                  # Packaged skill (SKILL.md + references/)
 │   ├── golang-gin-auth.zip
 │   ├── golang-gin-database.zip
+│   ├── golang-gin-swagger.zip
 │   ├── golang-gin-deploy.zip
 │   └── golang-gin-testing.zip
 ```
@@ -220,8 +265,8 @@ golang-gin-best-practices/
 
 1. Follow the design principles above — new patterns must be production-ready
 2. Code examples must compile and handle errors (no `_` for errors, no `fmt.Println`)
-3. SKILL.md files must stay under 500 lines — move detail to reference files
-4. Reference files over 300 lines must include a table of contents
+3. SKILL.md files must stay under 150 lines — move detail to reference files
+4. Each SKILL.md must include a Quality Mindset section (NoPUA-inspired)
 5. Use `gin.New()`, `log/slog`, `ShouldBind*`, and `context.Context` consistently
 6. Verify all Gin API calls match official documentation before submitting a PR
 
