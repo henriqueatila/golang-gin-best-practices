@@ -75,6 +75,13 @@ Generate and serve Swagger/OpenAPI documentation for Gin APIs using [swaggo/swag
 | `map[string]interface{}` in response | Replace with a named struct |
 | `internal_` prefix on model names | Known bug — use `--useStructName` |
 
+## Quality Mindset
+
+- Go beyond annotation syntax — for every endpoint, ask "does the doc match the actual behavior?" (response codes, required fields, auth requirements)
+- When stuck, apply **Stop → Observe → Turn → Act**: stop re-running `swag init` with the same flags, read the error word-for-word, check if the issue is a missing import, wrong path, or type in a different package
+- Verify with evidence, not claims — open Swagger UI, execute each endpoint via "Try it out," confirm request/response matches the spec. "I believe the docs are correct" is not "I tested it in Swagger UI"
+- Before saying "done," self-check: all error responses listed? `@Security` on protected routes? examples realistic? `swag fmt` ran? Am I personally satisfied?
+
 ## Scope
 
 This skill handles Swagger/OpenAPI documentation for Go Gin APIs using swaggo/swag: handler annotations, model tags, Swagger UI setup, doc generation, and CI/CD validation. Does NOT handle API implementation (see golang-gin-api), authentication (see golang-gin-auth), database (see golang-gin-database), or deployment (see golang-gin-deploy).

@@ -55,6 +55,14 @@ Build production-grade REST APIs with Go and Gin. This skill covers the 80% of p
 
 **Sentinel errors example:** `ErrNotFound`, `ErrUnauthorized`, `ErrForbidden`, `ErrConflict`, `ErrValidation` — each wraps an `AppError{Code, Message}`. `handleServiceError` maps them to HTTP status codes.
 
+## Quality Mindset
+
+- Go beyond the happy path — for every handler, ask "what else could go wrong?" (malformed input, concurrent access, missing auth, oversized payload)
+- When stuck, apply **Stop → Observe → Turn → Act**: stop repeating the same fix, read the error word-for-word, check if you're circling the same approach, then try a fundamentally different direction
+- Verify with evidence, not claims — `curl` the endpoint, check the response, paste the output. "I believe it works" is not "the output shows it works"
+- Before saying "done," self-check: built it? tested edge cases? checked related concerns (rate limiting, sanitization, error masking)? Am I personally satisfied with this delivery?
+- After fixing one handler, proactively scan for the same issue in related handlers — complete delivery beats partial fixes
+
 ## Scope
 
 This skill handles Go Gin REST API patterns: routing, handlers, request binding, middleware, error handling, and project structure. Does NOT handle authentication (see golang-gin-auth), database integration (see golang-gin-database), deployment (see golang-gin-deploy), API documentation (see golang-gin-swagger), or testing (see golang-gin-testing).

@@ -56,6 +56,14 @@ Package and deploy Gin APIs to production. This skill covers the essential deplo
 - Excluding `.env` prevents secrets from leaking into the image
 - Use `depends_on` with `condition: service_healthy` in docker-compose
 
+## Quality Mindset
+
+- Go beyond "it builds" — for every Dockerfile, ask "what's the attack surface?" (running as root? secrets in layers? unnecessary packages?)
+- When stuck, apply **Stop → Observe → Turn → Act**: stop rebuilding with the same Dockerfile, read the error/logs word-for-word, check if the real issue is env vars, permissions, or network — not the code
+- Verify with evidence, not claims — run `docker inspect`, `kubectl describe pod`, `curl /health`. Paste the output. "I believe it's running" is not "health check returns 200"
+- Before saying "done," self-check: resource limits set? graceful shutdown tested? secrets in Secrets (not ConfigMaps)? non-root user? Am I personally satisfied?
+- Deployed one service? Proactively verify dependent services (DB connectivity, Redis, migrations ran)
+
 ## Scope
 
 This skill handles containerization and deployment of Go Gin APIs: Docker multi-stage builds, docker-compose, Kubernetes manifests, health checks, 12-factor config, and CI/CD pipelines. Does NOT handle application code (see golang-gin-api), authentication (see golang-gin-auth), database queries (see golang-gin-database), or testing (see golang-gin-testing).

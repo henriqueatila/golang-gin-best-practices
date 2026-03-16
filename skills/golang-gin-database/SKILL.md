@@ -65,6 +65,14 @@ dsn := "host=db.example.com user=app password=*** dbname=myapp sslmode=verify-fu
 | Migrations | AutoMigrate (dev only) | golang-migrate (recommended) |
 | Best for | CRUD-heavy, quick setup | Complex queries, full SQL control |
 
+## Quality Mindset
+
+- Go beyond the query — for every repository method, ask "what happens under load?" (N+1 queries, missing indexes, connection pool exhaustion, lock contention)
+- When stuck, apply **Stop → Observe → Turn → Act**: stop retrying the same migration, read the error word-for-word, check if you're fighting a lock level or constraint issue, then try a fundamentally different schema approach
+- Verify with evidence, not claims — run `EXPLAIN ANALYZE`, paste the query plan. "I believe it uses the index" is not "the plan shows Index Scan"
+- Before saying "done," self-check: query parameterized? context propagated? transaction scope minimal? tested with realistic data volume? Am I personally satisfied?
+- Fixed one query? Proactively check similar queries in the same repository for the same issue pattern
+
 ## Scope
 
 This skill handles PostgreSQL integration for Go Gin APIs: repository pattern, GORM/sqlx, connection setup, transactions, cursor pagination, migrations, and dependency injection. Does NOT handle authentication (see golang-gin-auth), API routing/handlers (see golang-gin-api), deployment (see golang-gin-deploy), or testing (see golang-gin-testing).

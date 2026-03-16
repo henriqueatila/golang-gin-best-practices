@@ -56,6 +56,14 @@ Add JWT-based authentication and role-based access control to a Gin API. This sk
 | protected | `Auth(cfg, logger)` | all authenticated routes |
 | `/admin` | `Auth` + `RequireRole("admin")` | admin-only routes |
 
+## Quality Mindset
+
+- Security demands exhaustive thinking — for every auth flow, ask "how could an attacker bypass this?" (token reuse, timing attacks, brute force, missing validation)
+- When stuck, apply **Stop → Observe → Turn → Act**: stop tweaking the same JWT code, trace the full flow (generation → transmission → validation → claims), check if the real issue is elsewhere (config, middleware order, key mismatch)
+- Verify with evidence, not claims — `curl` with expired tokens, invalid signatures, missing headers. Paste the 401/403 response. "I believe it rejects" is not "the output shows 401"
+- Before saying "done," self-check: tested happy + error paths? checked related concerns (rate limiting, generic errors, bcrypt cost)? Am I personally satisfied?
+- Fixed one auth vulnerability? Proactively scan for similar issues across all auth endpoints — complete security beats partial fixes
+
 ## Scope
 
 This skill handles JWT authentication, token lifecycle, password hashing, RBAC middleware, and rate limiting for Go Gin APIs. Does NOT handle API routing/handlers (see golang-gin-api), database queries (see golang-gin-database), deployment (see golang-gin-deploy), or testing (see golang-gin-testing).

@@ -64,6 +64,14 @@ go test -v -race -tags=integration ./internal/repository/...  # integration only
 go test -race -coverprofile=coverage.out ./... && go tool cover -html=coverage.out
 ```
 
+## Quality Mindset
+
+- Go beyond the obvious test — for every handler test, ask "what ELSE could go wrong?" (empty body, duplicate email, expired token, concurrent requests, SQL injection in input)
+- When stuck, apply **Stop → Observe → Turn → Act**: stop tweaking the same assertion, trace the full call chain (handler → service → repository), check if the bug is one layer deeper or in the test setup itself
+- Verify with evidence, not claims — run `go test -v -race`, paste the output. "I believe tests pass" is not "output shows PASS with 0 races detected"
+- Before saying "done," self-check: tested error paths? edge cases? is the mock realistic or hiding bugs? ran with `-race`? Am I personally satisfied with this coverage?
+- Wrote tests for one handler? Proactively check if similar handlers lack the same test patterns
+
 ## Scope
 
 This skill handles testing patterns for Go Gin APIs: unit tests with httptest, table-driven tests, service tests with mocked repos, integration tests with testcontainers, and e2e tests. Does NOT handle API implementation (see golang-gin-api), authentication (see golang-gin-auth), database queries (see golang-gin-database), or deployment (see golang-gin-deploy).
