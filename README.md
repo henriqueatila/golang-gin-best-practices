@@ -135,112 +135,68 @@ golang-gin-best-practices/
 ├── LICENSE
 │
 ├── skills/
-│   ├── golang-gin-architect/
-│   │   ├── SKILL.md                 # System design, complexity assessment, skill orchestration
+│   ├── golang-gin-architect/        # System design, complexity, skill orchestration (53 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── complexity-assessment.md   # Decision trees, complexity budget, pattern gates
-│   │       ├── system-design.md           # C4 model, bounded contexts, domain modeling
-│   │       ├── data-patterns.md           # CQRS, event sourcing, saga, transactional outbox
-│   │       ├── resilience-patterns.md     # Circuit breaker, bulkhead, retry, rate limiting
-│   │       ├── api-design.md             # Versioning, pagination, backwards compatibility
-│   │       ├── cross-cutting-concerns.md  # Observability, caching, security, feature flags
-│   │       ├── adr-templates.md           # Architecture Decision Record templates
-│   │       ├── skill-orchestration.md     # When to activate each gingo skill
-│   │       ├── tech-debt-management.md    # Debt quadrant, prioritization, communication
-│   │       ├── clean-architecture.md     # Layers → Go packages, ports & adapters, DI
-│   │       ├── redis-caching-strategy.md # Smart caching, stampede prevention, sessions
-│   │       ├── messaging-patterns.md     # RabbitMQ producer/consumer, DLQ, pub/sub
-│   │       ├── object-storage.md         # S3/MinIO upload, presigned URLs, multipart
-│   │       ├── error-flow-architecture.md # Error flow domain→service→handler
-│   │       ├── golden-main-template.md   # Production-ready main.go templates
-│   │       ├── grpc-interop.md           # Gin HTTP + gRPC coexistence
-│   │       └── data-ownership.md         # Database-per-service, data sync
+│   │   └── references/              # complexity-*, system-design-*, data-patterns-*,
+│   │                                # resilience-*, api-design-*, cross-cutting-*,
+│   │                                # redis-*, messaging-*, object-storage-*,
+│   │                                # error-flow-*, golden-main-*, grpc-interop-*,
+│   │                                # data-ownership-*, adr-*, clean-architecture-*,
+│   │                                # tech-debt-*, skill-orchestration-*
 │   │
-│   ├── golang-gin-api/
-│   │   ├── SKILL.md                 # Server setup, routing, handlers, binding, errors
+│   ├── golang-gin-api/              # Server setup, routing, handlers, binding, errors (29 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── server-and-handlers.md # Graceful shutdown, domain model, handler patterns, DI
-│   │       ├── routing.md           # Route groups, versioning, pagination, file uploads
-│   │       ├── middleware.md        # CORS, rate limiting, request ID, timeout, recovery
-│   │       ├── error-handling.md    # AppError system, validation errors, panic recovery
-│   │       ├── websocket.md         # gorilla/websocket, hub pattern, auth, ping/pong
-│   │       ├── rate-limiting.md     # Token bucket, sliding window, Redis, tiered limits
-│   │       ├── file-uploads.md      # Single/multi upload, S3, MIME validation, security
-│   │       └── background-jobs.md   # Goroutines, worker pool, DB queue, asynq
+│   │   └── references/              # server-*, routing-*, middleware-*, error-handling-*,
+│   │                                # websocket-*, rate-limiting-*, file-uploads-*,
+│   │                                # background-jobs-*
 │   │
-│   ├── golang-gin-auth/
-│   │   ├── SKILL.md                 # JWT middleware, login handler, RBAC, token lifecycle
+│   ├── golang-gin-auth/             # JWT middleware, RBAC, OAuth2, CAPTCHA (16 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── auth-implementation.md # Claims, token gen/parse, JWT middleware, login/register
-│   │       ├── jwt-patterns.md      # Token refresh, blacklisting (Redis), RS256 vs HS256
-│   │       ├── rbac.md              # RequireRole, permissions, multi-tenant authorization
-│   │       ├── oauth2.md            # GitHub/Google social login, CSRF state, token exchange
-│   │       └── captcha.md           # reCAPTCHA/hCaptcha server-side verification middleware
+│   │   └── references/              # auth-*, jwt-patterns-*, rbac-*, oauth2-*, captcha-*
 │   │
-│   ├── golang-gin-database/
-│   │   ├── SKILL.md                 # Repository pattern, GORM/sqlx, connection pooling, DI
+│   ├── golang-gin-database/         # Repository pattern, GORM/sqlx, Redis (19 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── setup-and-repositories.md # Connection setup, retry, GORM/sqlx repos, transactions
-│   │       ├── gorm-patterns.md     # Models, CRUD, soft deletes, transactions, hooks
-│   │       ├── sqlx-patterns.md     # Struct scanning, NamedExec, IN clauses, transactions
-│   │       ├── migrations.md        # golang-migrate CLI, zero-downtime, seeding, rollback
-│   │       └── redis-patterns.md    # Cache-aside, JWT blacklist, distributed rate limiting
+│   │   └── references/              # setup-*, gorm-patterns-*, sqlx-patterns-*,
+│   │                                # migrations-*, redis-patterns-*
 │   │
-│   ├── golang-gin-psql-dba/
-│   │   ├── SKILL.md                 # Schema design, index strategy, migration safety, extensions
+│   ├── golang-gin-psql-dba/         # Schema design, indexes, migrations, extensions (39 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── schema-design.md             # Naming, types, constraints, multi-tenancy, audit
-│   │       ├── migration-impact-analysis.md # Lock levels, zero-downtime ALTER TABLE patterns
-│   │       ├── index-strategy.md            # B-tree, GIN, GiST, BRIN, EXPLAIN ANALYZE
-│   │       ├── query-performance.md         # pg_stat_statements, autovacuum, pool sizing
-│   │       ├── extensions-toolkit.md        # pg_cron, pg_partman, pg_trgm, pgcrypto
-│   │       ├── paradedb-full-text-search.md # BM25 search, hybrid search, analytics
-│   │       ├── pgvector-embeddings.md       # Vector storage, HNSW/IVFFlat, similarity
-│   │       ├── postgis-geospatial.md        # Spatial types, distance queries, GiST indexes
-│   │       ├── timescaledb-time-series.md   # Hypertables, compression, retention
-│   │       ├── row-level-security.md        # RLS policies, multi-tenant isolation
-│   │       ├── backup-and-recovery.md       # pg_dump, WAL archiving, PITR
-│   │       └── replication-and-ha.md        # Streaming replication, Patroni, failover
+│   │   └── references/              # schema-design-*, migration-impact-*, index-strategy-*,
+│   │                                # query-performance-*, extensions-toolkit-*,
+│   │                                # paradedb-*, pgvector-*, postgis-*, timescaledb-*,
+│   │                                # row-level-security-*, backup-and-recovery-*,
+│   │                                # replication-and-ha-*
 │   │
-│   ├── golang-gin-swagger/
-│   │   ├── SKILL.md                 # Swagger/OpenAPI annotations, Swagger UI, doc generation
+│   ├── golang-gin-swagger/          # Swagger/OpenAPI annotations, UI, CI/CD (9 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── setup-and-models.md  # General annotations, UI setup, model tags, build tags
-│   │       ├── annotations.md       # All @Param types, file uploads, response headers
-│   │       └── ci-cd.md             # GitHub Actions, PR validation, pre-commit hooks
+│   │   └── references/              # annotations-*, setup-*, ci-cd-*
 │   │
-│   ├── golang-gin-testing/
-│   │   ├── SKILL.md                 # httptest, table-driven tests, mock repositories
+│   ├── golang-gin-testing/          # Unit, integration, e2e, load testing (13 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── test-patterns.md     # Test helpers, handler tests, service tests
-│   │       ├── unit-tests.md        # Handler tests, middleware isolation, mock generation
-│   │       ├── integration-tests.md # testcontainers, TestMain, DB lifecycle, cleanup
-│   │       ├── e2e.md               # Full flows, docker-compose tests, GitHub Actions CI
-│   │       └── load-testing.md      # Go benchmarks, vegeta, k6, CI regression detection
+│   │   └── references/              # test-patterns-*, unit-tests-*, integration-tests-*,
+│   │                                # e2e-*, load-testing-*
 │   │
-│   ├── golang-gin-deploy/
-│   │   ├── SKILL.md                 # Multi-stage Dockerfile, docker-compose, health checks
+│   ├── golang-gin-deploy/           # Docker, docker-compose, K8s, observability (13 refs)
+│   │   ├── SKILL.md
 │   │   ├── metadata.json
-│   │   └── references/
-│   │       ├── configuration-and-health.md # Health handler, probes, 12-factor config
-│   │       ├── dockerfile.md        # Distroless, build args, layer caching, image size
-│   │       ├── docker-compose.md    # Air hot reload, pgadmin, networking, integration tests
-│   │       ├── kubernetes.md        # Deployment, Service, ConfigMap, HPA, Ingress, Helm
-│   │       └── observability.md     # OpenTelemetry tracing, metrics, slog correlation
+│   │   └── references/              # configuration-*, dockerfile-*, docker-compose-*,
+│   │                                # kubernetes-*, observability-*
 │   │
-│   ├── golang-gin-api.zip                  # Packaged skill (SKILL.md + references/)
+│   ├── golang-gin-architect.zip     # Packaged skills (SKILL.md + metadata.json + references/)
+│   ├── golang-gin-api.zip
 │   ├── golang-gin-auth.zip
 │   ├── golang-gin-database.zip
+│   ├── golang-gin-psql-dba.zip
 │   ├── golang-gin-swagger.zip
-│   ├── golang-gin-deploy.zip
-│   └── golang-gin-testing.zip
+│   ├── golang-gin-testing.zip
+│   └── golang-gin-deploy.zip
 ```
 
 ---
@@ -266,9 +222,10 @@ golang-gin-best-practices/
 1. Follow the design principles above — new patterns must be production-ready
 2. Code examples must compile and handle errors (no `_` for errors, no `fmt.Println`)
 3. SKILL.md files must stay under 150 lines — move detail to reference files
-4. Each SKILL.md must include a Quality Mindset section (NoPUA-inspired)
-5. Use `gin.New()`, `log/slog`, `ShouldBind*`, and `context.Context` consistently
-6. Verify all Gin API calls match official documentation before submitting a PR
+4. Reference files must stay under 150 lines — split by logical boundaries if needed
+5. Each SKILL.md must include Quality Mindset, Scope, and Security sections
+6. Use `gin.New()`, `log/slog`, `ShouldBind*`, and `context.Context` consistently
+7. Verify all Gin API calls match official documentation before submitting a PR
 
 ---
 

@@ -98,9 +98,15 @@ This skill handles Swagger/OpenAPI documentation for Go Gin APIs using swaggo/sw
 
 Load these when you need deeper detail:
 
-- **[references/setup-and-models.md](references/setup-and-models.md)** — General API annotations, Swagger UI setup and options, dynamic host configuration, handler annotation examples (CRUD + auth), model documentation with struct tags, generating docs, Makefile integration, excluding Swagger from production binary
-- **[references/annotations.md](references/annotations.md)** — Complete annotation reference: all @Param types, file uploads, response headers, enum from constants, model renaming, grouped responses, multiple auth schemes
-- **[references/ci-cd.md](references/ci-cd.md)** — GitHub Actions workflow, PR validation, pre-commit hooks, OpenAPI 3.0 conversion, multiple swagger instances, swag init flags reference
+- **[references/setup-serve.md](references/setup-serve.md)** — Dependencies, general API annotations, serving Swagger UI with options, dynamic host configuration, handler annotation examples (Create, GetByID, List)
+- **[references/setup-models-generate.md](references/setup-models-generate.md)** — Model documentation with struct tags, generating docs with swag init, Makefile integration, excluding Swagger from production binary
+- **[references/annotations-params-responses.md](references/annotations-params-responses.md)** — Annotation order, all @Param types (path/query/header/body/formData)
+- **[references/annotations-responses.md](references/annotations-responses.md)** — Response patterns (object/array/paginated/primitives/failures/headers)
+- **[references/annotations-crud-auth.md](references/annotations-crud-auth.md)** — Complete CRUD handler annotations (Update, Patch, Delete), auth endpoint annotations (Register, Login, Refresh), supporting auth DTOs
+- **[references/annotations-advanced.md](references/annotations-advanced.md)** — Security definitions, model tags, enums from constants
+- **[references/annotations-extras.md](references/annotations-extras.md)** — File uploads, model renaming, deprecation, tag metadata, custom extensions
+- **[references/ci-cd-workflows.md](references/ci-cd-workflows.md)** — GitHub Actions generate-and-commit workflow, PR validation workflow, Makefile targets, pre-commit hook
+- **[references/ci-cd-tooling.md](references/ci-cd-tooling.md)** — OpenAPI 3.0 conversion, multiple swagger instances, swag init flags reference, Docker integration, troubleshooting CI failures
 
 ## Cross-Skill References
 

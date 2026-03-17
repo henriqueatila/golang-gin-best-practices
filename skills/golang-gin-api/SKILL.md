@@ -79,14 +79,50 @@ This skill handles Go Gin REST API patterns: routing, handlers, request binding,
 
 Load these when you need deeper detail:
 
-- **[references/server-and-handlers.md](references/server-and-handlers.md)** — Server setup with graceful shutdown, domain model, thin handler pattern, route registration, request binding patterns, input sanitization, centralized error handling, goroutine safety
-- **[references/routing.md](references/routing.md)** — Route groups, API versioning, path parameters, pagination, wildcard routes, file uploads, custom validators, request size limits
-- **[references/middleware.md](references/middleware.md)** — CORS, security headers, request logging with slog, rate limiting, request ID, timeout, recovery, custom middleware template
-- **[references/error-handling.md](references/error-handling.md)** — Full AppError system, sentinel errors, validation error formatting, panic recovery, consistent JSON error format
-- **[references/websocket.md](references/websocket.md)** — WebSocket with gorilla/websocket: upgrade handler, hub pattern, auth before upgrade, ping/pong keepalive, graceful shutdown, JSON messages, testing
-- **[references/rate-limiting.md](references/rate-limiting.md)** — Deep-dive rate limiting: token bucket, sliding window, Redis distributed, per-user/API-key quotas, tiered limits, response headers, graceful degradation
-- **[references/file-uploads.md](references/file-uploads.md)** — File upload patterns: single/multiple files, struct binding, S3/cloud storage, MIME validation, security checklist
-- **[references/background-jobs.md](references/background-jobs.md)** — Background processing: goroutine with c.Copy(), worker pools, DB-backed queues, external queues (asynq), graceful shutdown
+**Server & Handlers:**
+- **[references/server-setup-and-routes.md](references/server-setup-and-routes.md)** — Server setup, graceful shutdown, route registration, request binding patterns
+- **[references/server-handlers-and-errors.md](references/server-handlers-and-errors.md)** — Thin handler pattern, domain model, input sanitization, goroutine safety
+
+**Routing:**
+- **[references/routing-groups-and-versioning.md](references/routing-groups-and-versioning.md)** — Route groups, API versioning, query parameter binding with pagination
+- **[references/routing-params-and-wildcards.md](references/routing-params-and-wildcards.md)** — Path parameters, wildcard routes, NoRoute handler, multipart file upload
+- **[references/routing-validators-and-limits.md](references/routing-validators-and-limits.md)** — Custom validators, request size limits
+
+**Middleware:**
+- **[references/middleware-core.md](references/middleware-core.md)** — Chain execution, CORS configuration, security headers
+- **[references/middleware-logging-and-recovery.md](references/middleware-logging-and-recovery.md)** — Request logging with slog, rate limiting, request ID, recovery
+- **[references/middleware-timeout-and-custom.md](references/middleware-timeout-and-custom.md)** — Timeout middleware, custom middleware template
+
+**Error Handling:**
+- **[references/error-handling-apperror.md](references/error-handling-apperror.md)** — AppError struct, sentinel errors, handleServiceError, error wrapping
+- **[references/error-handling-validation.md](references/error-handling-validation.md)** — Validation error formatting, consistent JSON error format
+- **[references/error-handling-recovery.md](references/error-handling-recovery.md)** — Panic recovery middleware
+
+**WebSocket:**
+- **[references/websocket-setup-and-echo.md](references/websocket-setup-and-echo.md)** — Upgrader setup, basic echo handler
+- **[references/websocket-hub-and-client.md](references/websocket-hub-and-client.md)** — Hub pattern, Client struct, readPump/writePump
+- **[references/websocket-chat-handler.md](references/websocket-chat-handler.md)** — ChatHandler wiring Hub + Client into a Gin route
+- **[references/websocket-auth-and-keepalive.md](references/websocket-auth-and-keepalive.md)** — Auth before upgrade, ping/pong keepalive
+- **[references/websocket-shutdown-and-messages.md](references/websocket-shutdown-and-messages.md)** — Graceful shutdown, JSON messages
+- **[references/websocket-testing.md](references/websocket-testing.md)** — Testing WebSocket handlers
+
+**Rate Limiting:**
+- **[references/rate-limiting-algorithms.md](references/rate-limiting-algorithms.md)** — Algorithm overview, in-memory token bucket
+- **[references/rate-limiting-sliding-window.md](references/rate-limiting-sliding-window.md)** — In-memory sliding window counter
+- **[references/rate-limiting-redis.md](references/rate-limiting-redis.md)** — Redis token bucket (Lua)
+- **[references/rate-limiting-redis-sliding.md](references/rate-limiting-redis-sliding.md)** — Redis sliding window (sorted set)
+- **[references/rate-limiting-peruser.md](references/rate-limiting-peruser.md)** — Per-user / API-key limiting, key extractor pattern
+- **[references/rate-limiting-tiered.md](references/rate-limiting-tiered.md)** — Tiered limits by role, loading from environment
+- **[references/rate-limiting-headers.md](references/rate-limiting-headers.md)** — Response headers (X-RateLimit-*)
+- **[references/rate-limiting-fallback.md](references/rate-limiting-fallback.md)** — Graceful degradation when Redis is unavailable
+
+**File Uploads:**
+- **[references/file-uploads-local.md](references/file-uploads-local.md)** — Single/multiple files, struct binding with FileHeader
+- **[references/file-uploads-cloud.md](references/file-uploads-cloud.md)** — S3/cloud storage interface, presigned URLs, security checklist
+
+**Background Jobs:**
+- **[references/background-jobs-goroutine-and-pool.md](references/background-jobs-goroutine-and-pool.md)** — Goroutine with c.Copy(), worker pool pattern
+- **[references/background-jobs-queue-and-shutdown.md](references/background-jobs-queue-and-shutdown.md)** — DB-backed queue, external queue (asynq), graceful shutdown
 
 ## Cross-Skill References
 
@@ -95,7 +131,7 @@ Load these when you need deeper detail:
 - For testing handlers and services: see the **golang-gin-testing** skill
 - For Dockerizing this project structure: see the **golang-gin-deploy** skill
 - For OpenTelemetry tracing, metrics, and slog correlation: see **golang-gin-deploy** skill (`references/observability.md`)
-- **golang-gin-clean-arch** → Architecture: 4-layer separation, dependency injection, error propagation, input sanitization
+- **golang-gin-architect** → Architecture: 4-layer separation, dependency injection, error propagation, input sanitization (`references/clean-architecture.md`)
 
 ## Official Docs
 

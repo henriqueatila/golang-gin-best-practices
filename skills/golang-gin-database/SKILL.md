@@ -89,11 +89,25 @@ This skill handles PostgreSQL integration for Go Gin APIs: repository pattern, G
 
 Load these for deeper detail:
 
-- **[references/setup-and-repositories.md](references/setup-and-repositories.md)** — Database connection setup, retry with backoff, TLS/sslmode, GORM repository implementation, sqlx repository implementation, context-based transactions, cursor pagination, dependency injection in main.go
-- **[references/gorm-patterns.md](references/gorm-patterns.md)** — GORM model definition, CRUD, soft deletes, scopes, preloading, raw SQL, batch ops, hooks, connection pooling, PostgreSQL-specific features, complete repository implementation
-- **[references/sqlx-patterns.md](references/sqlx-patterns.md)** — Connection setup, struct scanning, Get/Select/NamedExec, safe dynamic queries, sqlx.In, null handling, query builder, complete repository implementation
-- **[references/migrations.md](references/migrations.md)** — golang-migrate CLI and library usage, file naming, zero-downtime migrations, startup vs CI/CD strategy, seeding, rollback
-- **[references/redis-patterns.md](references/redis-patterns.md)** — Redis integration: cache-aside pattern, session/blacklist storage, distributed rate limiting, cache invalidation, health checks
+- **[references/setup-connection.md](references/setup-connection.md)** — Repository interface pattern, GORM Config/NewGORMDB, connection pool settings
+- **[references/setup-di.md](references/setup-di.md)** — ConnectWithRetry with backoff, TLS/sslmode, dependency injection wiring in main.go
+- **[references/setup-repositories.md](references/setup-repositories.md)** — Thin GORM and sqlx repository stubs, WithTx/txFromCtx transaction pattern, cursor pagination overview
+- **[references/gorm-patterns-models-crud.md](references/gorm-patterns-models-crud.md)** — GORM model definition, CRUD operations (Create/GetByID/Update/Delete)
+- **[references/gorm-patterns-errors.md](references/gorm-patterns-errors.md)** — Soft deletes, domain error mapping (mapGORMError), GORM hooks trade-offs
+- **[references/gorm-patterns-queries.md](references/gorm-patterns-queries.md)** — Scopes, cursor/keyset pagination
+- **[references/gorm-patterns-advanced.md](references/gorm-patterns-advanced.md)** — Preloading associations, raw SQL, batch operations, PostgreSQL-specific features (ON CONFLICT, RETURNING, arrays, JSONB)
+- **[references/gorm-patterns-repository.md](references/gorm-patterns-repository.md)** — Transaction context helpers (WithTx, txFromCtx), complete UserRepository implementation
+- **[references/sqlx-patterns-setup.md](references/sqlx-patterns-setup.md)** — Connection setup, connection pooling, struct scanning with db tags
+- **[references/sqlx-patterns-queries.md](references/sqlx-patterns-queries.md)** — Get/Select/NamedExec, null handling, safe dynamic queries
+- **[references/sqlx-patterns-repository.md](references/sqlx-patterns-repository.md)** — Transactions with sqlx.Tx, sqlx.In for IN clauses, query constants
+- **[references/sqlx-patterns-full-repository.md](references/sqlx-patterns-full-repository.md)** — Complete UserRepository implementation (Create, GetByID, GetByEmail, List, Update, Delete)
+- **[references/migrations-setup.md](references/migrations-setup.md)** — golang-migrate overview, file naming, CLI usage, library usage (run on startup), startup vs CI/CD strategy
+- **[references/migrations-advanced.md](references/migrations-advanced.md)** — Zero-downtime migration patterns (column add/rename, CONCURRENTLY index, backfill)
+- **[references/migrations-examples.md](references/migrations-examples.md)** — Seeding data, rollback strategies, example migration 000001 (users table)
+- **[references/migrations-schema-examples.md](references/migrations-schema-examples.md)** — Example migrations 000002–000004 (roles table, user_roles junction, updated_at trigger)
+- **[references/redis-patterns-setup.md](references/redis-patterns-setup.md)** — Redis connection setup, cache repository interface and implementation
+- **[references/redis-patterns-cache.md](references/redis-patterns-cache.md)** — Cache-aside pattern, cache invalidation on write, DI wiring
+- **[references/redis-patterns-advanced.md](references/redis-patterns-advanced.md)** — JWT blacklist storage, distributed sliding-window rate limiting, health checks, docker-compose config
 
 ## Cross-Skill References
 
@@ -101,7 +115,7 @@ Load these for deeper detail:
 - For testing repositories with a real database: see the **golang-gin-testing** skill (integration tests)
 - For running migrations in Docker containers: see the **golang-gin-deploy** skill
 - For user authentication using the UserRepository: see the **golang-gin-auth** skill
-- **golang-gin-clean-arch** → Architecture: repository pattern, domain error wrapping, transaction patterns
+- **golang-gin-architect** → Architecture: repository pattern, domain error wrapping, transaction patterns (`references/clean-architecture.md`)
 
 ## Official Docs
 

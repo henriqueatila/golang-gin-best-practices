@@ -78,20 +78,35 @@ This skill handles containerization and deployment of Go Gin APIs: Docker multi-
 
 ## Reference Files
 
-Load these when you need deeper detail:
+### Configuration and Health
+- **[references/configuration-health-and-config-loader.md](references/configuration-health-and-config-loader.md)** — Health check handler (DBPinger, DB ping timeout, 503 on failure), readiness vs liveness, 12-factor config struct
+- **[references/configuration-docker-quickref.md](references/configuration-docker-quickref.md)** — .dockerignore, Dockerfile quick reference, docker-compose quick reference
 
-- **[references/configuration-and-health.md](references/configuration-and-health.md)** — Health check handler with DB ping, readiness vs liveness probes, 12-factor config struct, environment variables, .dockerignore, multi-stage Dockerfile, docker-compose for local dev
-- **[references/dockerfile.md](references/dockerfile.md)** — Multi-stage build explained, distroless vs Alpine vs scratch, build args and secrets, layer caching, non-root user, image size optimization, complete production Dockerfile
-- **[references/docker-compose.md](references/docker-compose.md)** — Air hot reload setup, pgadmin, service health checks, volume mounts, networking, integration test compose, production-like compose
-- **[references/kubernetes.md](references/kubernetes.md)** — Deployment manifest, Service, ConfigMap, Secret, liveness/readiness probes, HPA, Ingress, PVC, PodDisruptionBudget, NetworkPolicy, Helm chart structure, GitHub Actions CI/CD workflow (with Trivy image scanning)
-- **[references/observability.md](references/observability.md)** — OpenTelemetry tracing and metrics: SDK setup, otelgin middleware, manual spans, RED metrics, log-trace correlation with slog, sampling, Jaeger docker-compose
+### Dockerfile
+- **[references/dockerfile-multistage-and-base-images.md](references/dockerfile-multistage-and-base-images.md)** — Multi-stage build explained, distroless vs Alpine vs scratch, layer caching, BuildKit cache mounts
+- **[references/dockerfile-build-args-security-and-healthcheck.md](references/dockerfile-build-args-security-and-healthcheck.md)** — Build args, BuildKit secrets, non-root user, HEALTHCHECK instruction with embedded binary
+- **[references/dockerfile-size-optimization-and-complete-example.md](references/dockerfile-size-optimization-and-complete-example.md)** — ldflags, trimpath, UPX, .dockerignore, complete production Dockerfile
+
+### Docker Compose
+- **[references/docker-compose-dev-setup.md](references/docker-compose-dev-setup.md)** — Air hot reload, service health checks, volume mounts, environment variables, networking
+- **[references/docker-compose-test-and-prod.md](references/docker-compose-test-and-prod.md)** — Integration test compose, production-like compose, complete docker-compose.yml
+
+### Kubernetes
+- **[references/kubernetes-deployment-service-config.md](references/kubernetes-deployment-service-config.md)** — Deployment manifest (rolling update, anti-affinity, security context), Service, ConfigMap, Secret
+- **[references/kubernetes-probes-hpa-ingress-pvc.md](references/kubernetes-probes-hpa-ingress-pvc.md)** — Liveness/readiness/startup probes, HPA, Ingress (nginx + cert-manager), PVC, PodDisruptionBudget, NetworkPolicy
+- **[references/kubernetes-complete-helm-cicd.md](references/kubernetes-complete-helm-cicd.md)** — Complete manifest commands, migration Job, Helm chart structure, GitHub Actions CI/CD (test → build → migrate → deploy)
+
+### Observability (OpenTelemetry)
+- **[references/observability-otel-sdk-and-middleware.md](references/observability-otel-sdk-and-middleware.md)** — OTel SDK setup (TracerProvider + MeterProvider), otelgin middleware, manual spans, error recording
+- **[references/observability-metrics-logs-sampling.md](references/observability-metrics-logs-sampling.md)** — RED metrics middleware, log-trace correlation with slog, sampling strategies
+- **[references/observability-docker-stack-and-shutdown.md](references/observability-docker-stack-and-shutdown.md)** — Jaeger + OTel Collector compose, Prometheus + Grafana overlay, graceful shutdown
 
 ## Cross-Skill References
 
 - For project structure this Dockerfile builds (`cmd/api/main.go`): see the **golang-gin-api** skill
 - For health check handler used by K8s probes: see the **golang-gin-api** skill
 - For running migrations in Docker (migrate service): see the **golang-gin-database** skill (`references/migrations.md`)
-- **golang-gin-clean-arch** → Architecture: project structure, graceful shutdown, configuration patterns
+- **golang-gin-architect** → Architecture: project structure, graceful shutdown, configuration patterns (`references/clean-architecture.md`)
 
 ## Official Docs
 

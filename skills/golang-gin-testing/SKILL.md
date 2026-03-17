@@ -88,18 +88,35 @@ This skill handles testing patterns for Go Gin APIs: unit tests with httptest, t
 
 Load these when you need deeper detail:
 
-- **[references/test-patterns.md](references/test-patterns.md)** — Test helpers (NewTestRouter, PerformRequest, AssertJSON, BearerHeader), handler tests with httptest, table-driven handler tests, service tests with mocked repository, running test commands
-- **[references/unit-tests.md](references/unit-tests.md)** — Handler httptest patterns, testing authenticated routes with mock JWT, middleware isolation tests, mock generation with `gomock`/manual mocks, `t.Helper`/`t.Cleanup`/`t.Parallel`, test fixtures and factories, benchmark tests (`BenchmarkX`), fuzz tests (`FuzzX`), golden file/snapshot testing, test organization (same-package vs external-package, build tags), testify assertions
-- **[references/integration-tests.md](references/integration-tests.md)** — testcontainers-go setup, `TestMain` for DB lifecycle, repository integration tests, cleanup between tests, build tags, fixture loading
-- **[references/e2e.md](references/e2e.md)** — End-to-end flow testing (register → login → CRUD), docker-compose test setup, GitHub Actions CI/CD, environment configuration, cleanup and idempotency
-- **[references/load-testing.md](references/load-testing.md)** — Load and performance testing: Go benchmarks, vegeta, k6, performance targets, CI regression detection
+**Test Patterns**
+- **[references/test-patterns-helpers-and-handler-tests.md](references/test-patterns-helpers-and-handler-tests.md)** — testutil helpers (PerformRequest, AssertJSON, BearerHeader), handler tests with httptest, table-driven tests
+- **[references/test-patterns-service-tests-and-running.md](references/test-patterns-service-tests-and-running.md)** — mockUserRepository, service tests with errors.As, running test commands
+
+**Unit Tests**
+- **[references/unit-tests-handler-and-json.md](references/unit-tests-handler-and-json.md)** — Handler testing with httptest, JSON response tests, authenticated route tests
+- **[references/unit-tests-service-mocks-and-table-driven.md](references/unit-tests-service-mocks-and-table-driven.md)** — mockUserRepository, service tests, gomock patterns, table-driven tests
+- **[references/unit-tests-fixtures-helpers-and-middleware.md](references/unit-tests-fixtures-helpers-and-middleware.md)** — UserFixture factory, t.Helper/Cleanup/Parallel, middleware isolation tests
+- **[references/unit-tests-benchmarks-fuzz-and-golden.md](references/unit-tests-benchmarks-fuzz-and-golden.md)** — BenchmarkUserHandler, FuzzUserHandler_Create, golden file testing, test organization, testify
+
+**Integration Tests**
+- **[references/integration-tests-setup-and-testmain.md](references/integration-tests-setup-and-testmain.md)** — testcontainers dependencies, build tags, TestMain DB lifecycle, testdb.NewPostgres helper
+- **[references/integration-tests-cleanup-and-repository.md](references/integration-tests-cleanup-and-repository.md)** — Truncate/rollback cleanup patterns, repository tests, API integration tests
+- **[references/integration-tests-api-migrations-and-fixtures.md](references/integration-tests-api-migrations-and-fixtures.md)** — Migration up/down test, LoadFixture helper, fixture SQL usage
+
+**E2E Tests**
+- **[references/e2e-structure-and-critical-flow.md](references/e2e-structure-and-critical-flow.md)** — E2E structure, register→login→CRUD flow, appUnderTest struct, TestMain with testcontainers
+- **[references/e2e-cicd-config-and-cleanup.md](references/e2e-cicd-config-and-cleanup.md)** — docker-compose test setup, GitHub Actions 3-job pipeline, e2eConfig, uniqueEmail cleanup pattern
+
+**Load Testing**
+- **[references/load-testing-benchmarks-and-vegeta.md](references/load-testing-benchmarks-and-vegeta.md)** — BenchmarkGetUserHandler, Vegeta CLI patterns
+- **[references/load-testing-k6-and-ci-regression.md](references/load-testing-k6-and-ci-regression.md)** — k6 script with thresholds, performance targets, benchstat CI regression detection
 
 ## Cross-Skill References
 
 - For handler and service implementations being tested: see the **golang-gin-api** skill
 - For `UserRepository` interface and GORM/sqlx implementations: see the **golang-gin-database** skill
 - For JWT middleware and auth handler test patterns: see the **golang-gin-auth** skill
-- **golang-gin-clean-arch** → Architecture: mock strategy (boundaries only), testing by layer, test fixtures
+- **golang-gin-architect** → Architecture: mock strategy (boundaries only), testing by layer, test fixtures (`references/clean-architecture.md`)
 
 ## Official Docs
 

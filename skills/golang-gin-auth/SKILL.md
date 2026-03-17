@@ -80,18 +80,38 @@ This skill handles JWT authentication, token lifecycle, password hashing, RBAC m
 
 Load these when you need deeper detail:
 
-- **[references/auth-implementation.md](references/auth-implementation.md)** — Claims struct, token generation/validation, JWT middleware, login/register handlers, rate limiter, protected route wiring, getting current user
-- **[references/jwt-patterns.md](references/jwt-patterns.md)** — Access + refresh token architecture, token refresh endpoint, token blacklisting (Redis), RS256 vs HS256, custom claims, storage recommendations (httpOnly cookie vs localStorage), CSRF protection, complete auth flow
-- **[references/rbac.md](references/rbac.md)** — RequireRole/RequireAnyRole middleware, permission-based access, role hierarchy, multi-tenant authorization, resource-level authorization, complete RBAC example
-- **[references/oauth2.md](references/oauth2.md)** — OAuth2/social login: GitHub and Google flows, CSRF state management, token exchange, user creation, route wiring
-- **[references/captcha.md](references/captcha.md)** — CAPTCHA middleware: reCAPTCHA v2/v3 and hCaptcha server-side verification, route application for public forms
+**Auth Implementation:**
+- **[references/auth-implementation-core.md](references/auth-implementation-core.md)** — Claims struct, token generation/validation
+- **[references/auth-middleware.md](references/auth-middleware.md)** — JWT Bearer middleware, getting current user from context
+- **[references/auth-implementation-handlers.md](references/auth-implementation-handlers.md)** — Login/register handlers, protected route wiring
+- **[references/auth-ip-rate-limiter.md](references/auth-ip-rate-limiter.md)** — IPRateLimiter middleware for auth routes
+
+**JWT Patterns:**
+- **[references/jwt-patterns-tokens.md](references/jwt-patterns-tokens.md)** — Access + refresh token architecture, custom claims, token refresh endpoint
+- **[references/jwt-patterns-blacklist.md](references/jwt-patterns-blacklist.md)** — Token blacklisting (Redis), logout endpoint, complete auth flow wiring
+- **[references/jwt-patterns-storage-and-csrf.md](references/jwt-patterns-storage-and-csrf.md)** — Storage recommendations (httpOnly cookie vs localStorage), CSRF protection
+- **[references/jwt-patterns-rs256.md](references/jwt-patterns-rs256.md)** — RS256 vs HS256 comparison, RSA token generation/validation
+
+**RBAC:**
+- **[references/rbac-middleware.md](references/rbac-middleware.md)** — RequireRole/RequireAnyRole middleware, permission-based access (JWT claims and DB)
+- **[references/rbac-hierarchy-and-tenant.md](references/rbac-hierarchy-and-tenant.md)** — Role hierarchy, multi-tenant authorization
+- **[references/rbac-resource-and-impersonation.md](references/rbac-resource-and-impersonation.md)** — Resource-level authorization, admin impersonation
+- **[references/rbac-route-wiring.md](references/rbac-route-wiring.md)** — Complete RBAC route registration example
+
+**OAuth2 / Social Login:**
+- **[references/oauth2-flows.md](references/oauth2-flows.md)** — Config, CSRF state management, GitHub OAuth2 flow (initiate + callback)
+- **[references/oauth2-github-profile.md](references/oauth2-github-profile.md)** — FetchGitHubProfile helper
+- **[references/oauth2-google-and-security.md](references/oauth2-google-and-security.md)** — Google flow, route registration, security checklist
+
+**CAPTCHA:**
+- **[references/captcha-middleware.md](references/captcha-middleware.md)** — reCAPTCHA v2/v3 and hCaptcha server-side verification, route application, security notes
 
 ## Cross-Skill References
 
 - For handler patterns (ShouldBindJSON, error responses, route groups): see the **golang-gin-api** skill
 - For `UserRepository` interface and `GetByEmail` implementation: see the **golang-gin-database** skill
 - For testing JWT middleware and auth handlers: see the **golang-gin-testing** skill
-- **golang-gin-clean-arch** → Architecture: where auth middleware fits (delivery layer only), DI patterns for auth services
+- **golang-gin-architect** → Architecture: where auth middleware fits (delivery layer only), DI patterns for auth services (`references/clean-architecture.md`)
 
 ## Official Docs
 
