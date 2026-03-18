@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "organization": "henriqueatila",
   "date": "March 2026",
   "abstract": "JWT authentication and RBAC for Go Gin APIs — login handlers, token lifecycle (jti blacklisting, refresh rotation), CSRF protection, rate limiting, bcrypt password hashing, secure cookies, RS256/HS256, and admin impersonation guards.",

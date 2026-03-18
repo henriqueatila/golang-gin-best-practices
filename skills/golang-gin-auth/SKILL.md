@@ -4,7 +4,7 @@ description: "JWT auth and RBAC for Go Gin APIs. Use when adding login, signup, 
 license: MIT
 metadata:
   author: henriqueatila
-  version: 1.0.4
+  version: 1.0.5
 ---
 
 # golang-gin-auth — Authentication & Authorization
@@ -33,7 +33,7 @@ Add JWT-based authentication and role-based access control to a Gin API. This sk
 
 **Token generation rules:**
 - Always set `jti` (`uuid.NewString()`), `NotBefore`, `IssuedAt`, `ExpiresAt`
-- Validate signing method in `ParseWithClaims` key function — reject unexpected algorithms
+- **Whitelist the exact signing method** in `ParseWithClaims` — use `t.Method != jwt.SigningMethodHS256` (not `*jwt.SigningMethodHMAC` which accepts HS256/384/512). An attacker could craft tokens with `alg: none` or a different HMAC variant if the check is too broad
 - On expired token: `errors.Is(err, jwt.ErrTokenExpired)` for distinct handling
 
 **JWT middleware flow:** Extract `Authorization: Bearer <token>` → `ParseAccessToken` → `c.Set(ClaimsKey, claims)` + `c.Set(UserIDKey, claims.UserID)` → `c.Next()`

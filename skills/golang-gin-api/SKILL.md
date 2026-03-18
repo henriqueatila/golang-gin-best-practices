@@ -4,7 +4,7 @@ description: "Build REST APIs with Go Gin. Use when creating Go web servers, add
 license: MIT
 metadata:
   author: henriqueatila
-  version: 1.0.5
+  version: 1.0.6
 ---
 
 # golang-gin-api — Core REST API Development
@@ -34,6 +34,11 @@ Build production-grade REST APIs with Go and Gin. This skill covers the 80% of p
 - Always use `ShouldBind*` — `Bind*` auto-aborts with 400 and prevents custom error responses
 - Pass `c.Request.Context()` to all downstream blocking calls
 - Call `c.Copy()` before passing `*gin.Context` to goroutines
+- **NEVER** do raw type assertions on `c.Get()` values — use safe extraction helpers to prevent nil pointer panics (see `references/safe-context-extraction.md`)
+- Validate path parameter format (UUID, ID) **before** DB lookup — return 400 for bad format, 404 for not found
+- Security-related parsing (schedules, permissions) must **fail-closed** — deny access on parse error, never fail-open
+- Cap pagination bounds: `1 <= page <= 10000`, `1 <= per_page <= 100`
+- Background goroutines MUST use `ticker + select + ctx.Done()` — never bare `for { time.Sleep(...) }`
 
 **Request binding summary:**
 
@@ -97,6 +102,10 @@ Load these when you need deeper detail:
 - **[references/error-handling-apperror.md](references/error-handling-apperror.md)** — AppError struct, sentinel errors, handleServiceError, error wrapping
 - **[references/error-handling-validation.md](references/error-handling-validation.md)** — Validation error formatting, consistent JSON error format
 - **[references/error-handling-recovery.md](references/error-handling-recovery.md)** — Panic recovery middleware
+
+**Defensive Patterns:**
+- **[references/safe-context-extraction.md](references/safe-context-extraction.md)** — Type-safe `c.Get()` helpers, nil pointer prevention, handler and access check patterns
+- **[references/defensive-handler-patterns.md](references/defensive-handler-patterns.md)** — Input format validation before DB lookup, fail-closed security, pagination bounds, goroutine lifecycle
 
 **WebSocket:**
 - **[references/websocket-setup-and-echo.md](references/websocket-setup-and-echo.md)** — Upgrader setup, basic echo handler

@@ -4,7 +4,7 @@ description: "PostgreSQL integration for Go Gin with GORM/sqlx. Use when adding 
 license: MIT
 metadata:
   author: henriqueatila
-  version: 1.0.4
+  version: 1.0.5
 ---
 
 # golang-gin-database — Database Integration
@@ -39,6 +39,13 @@ Integrate PostgreSQL with Gin APIs using the repository pattern. Keeps database 
 - Pass `*gorm.DB` via context so repos transparently participate in transactions
 - Call `txFromCtx(ctx)` in every repo method instead of `r.db` directly
 - Service layer orchestrates the transaction; repos stay unaware of it
+
+**Defensive query rules:**
+- **NEVER** ignore database errors — every `db.Get()`, `db.Select()`, `db.Exec()`, `db.QueryRow().Scan()` MUST have its error checked. Swallowed errors return zero-values and mask outages
+- Fire-and-forget operations (audit logs, analytics) MUST still log errors via `slog.Error()`
+- **ALWAYS** escape LIKE metacharacters (`%`, `_`, `\`) in user search input before using in ILIKE/LIKE clauses — prevents pattern DoS and information leaks (see `references/defensive-query-patterns.md`)
+- **ALWAYS** use explicit table aliases in JOINed queries for ORDER BY, WHERE, and helper functions (`paginate`, `orderBy`) — prevents ambiguous column errors
+- Validate ORDER BY fields against a whitelist — never pass user input directly into ORDER BY
 
 **Pagination**
 - Prefer cursor/keyset pagination over `OFFSET` for large tables — O(log n) via index seek
@@ -108,6 +115,9 @@ Load these for deeper detail:
 - **[references/redis-patterns-setup.md](references/redis-patterns-setup.md)** — Redis connection setup, cache repository interface and implementation
 - **[references/redis-patterns-cache.md](references/redis-patterns-cache.md)** — Cache-aside pattern, cache invalidation on write, DI wiring
 - **[references/redis-patterns-advanced.md](references/redis-patterns-advanced.md)** — JWT blacklist storage, distributed sliding-window rate limiting, health checks, docker-compose config
+
+**Defensive Patterns:**
+- **[references/defensive-query-patterns.md](references/defensive-query-patterns.md)** — Error handling rules, LIKE metacharacter escaping, table alias consistency, sort field whitelisting, fire-and-forget logging
 
 ## Cross-Skill References
 

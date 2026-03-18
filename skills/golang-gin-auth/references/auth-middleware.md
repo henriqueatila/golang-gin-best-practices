@@ -55,14 +55,20 @@ func Auth(cfg auth.TokenConfig, logger *slog.Logger) gin.HandlerFunc {
 ## Getting Current User in Handlers
 
 ```go
-// Option 1: string shortcut
+// Option 1: string shortcut (safe — returns "" if missing)
 userID := c.GetString(middleware.UserIDKey)
 
-// Option 2: full claims (role, email, jti, etc.)
+// Option 2: full claims with safe type assertion
 val, exists := c.Get(middleware.ClaimsKey)
 if !exists {
     c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
     return
 }
-claims := val.(*auth.Claims)
+claims, ok := val.(*auth.Claims)
+if !ok {
+    c.JSON(http.StatusInternalServerError, gin.H{"error": "invalid claims"})
+    return
+}
 ```
+
+> **WARNING:** Never do raw type assertions on `c.Get()` values without checking `ok`. If the auth middleware is misconfigured or skipped, `val.(*auth.Claims)` will panic. Always use the two-value assertion form. See `golang-gin-api` skill → `references/safe-context-extraction.md` for reusable helper functions.

@@ -103,7 +103,8 @@ func GenerateRefreshToken(cfg TokenConfig, userID string) (string, error) {
 
 func ParseAccessToken(cfg TokenConfig, tokenStr string) (*Claims, error) {
     token, err := jwt.ParseWithClaims(tokenStr, &Claims{}, func(t *jwt.Token) (any, error) {
-        if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+        // Whitelist exact method — *jwt.SigningMethodHMAC accepts HS256/384/512
+        if t.Method != jwt.SigningMethodHS256 {
             return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
         }
         return cfg.AccessSecret, nil
